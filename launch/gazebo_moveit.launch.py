@@ -28,7 +28,6 @@ from launch_ros.actions import Node
 from moveit_configs_utils import MoveItConfigsBuilder
 from moveit_configs_utils.launches import (
     generate_move_group_launch,
-    generate_moveit_rviz_launch,
 )
 
 
@@ -116,12 +115,99 @@ def generate_launch_description():
         ],
     )
 
+    # inject use_sim_time into robot_description so move_group (via to_dict()) and
+    # robot_state_publisher both receive it
+    moveit_config.robot_description['use_sim_time'] = True
+
     # ── MoveGroup + RViz ────────────────────────────────────────────────────
     mg_ld = generate_move_group_launch(moveit_config)
-    rviz_ld = generate_moveit_rviz_launch(moveit_config)
+
+    args.append(
+        DeclareLaunchArgument(
+            'rviz_config',
+            default_value=str(moveit_config.package_path / 'config/moveit.rviz'),
+        )
+    )
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        output='log',
+        arguments=['-d', LaunchConfiguration('rviz_config')],
+        parameters=[
+            moveit_config.planning_pipelines,
+            moveit_config.robot_description_kinematics,
+            moveit_config.joint_limits,
+            {'use_sim_time': use_sim_time},
+        ],
+    )
+
+    # ── Target cylinder (Gazebo) ────────────────────────────────────────────
+    cylinder_sdf = """<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="target_cylinder">
+    <static>true</static>
+    <link name="cylinder_link">
+      <collision name="collision">
+        <geometry><cylinder><radius>0.02</radius><length>0.1</length></cylinder></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><cylinder><radius>0.02</radius><length>0.1</length></cylinder></geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>"""
+
+    fd_cyl, sdf_tmp = tempfile.mkstemp(
+        prefix='target_cylinder_', suffix='.sdf', text=True,
+    )
+    with os.fdopen(fd_cyl, 'w', encoding='utf-8') as f:
+        f.write(cylinder_sdf)
+
+    spawn_cylinder = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        output='screen',
+        arguments=[
+            '-entity', 'target_cylinder',
+            '-file', sdf_tmp,
+            '-x', '0.0', '-y', '-0.65', '-z', '0.75',
+            '-timeout', '60.0',
+        ],
+    )
+
+    # ── Target cylinder (MoveIt / RViz) ────────────────────────────────────
+    publish_collision_object = Node(
+        package='hrd_moveit_config',
+        executable='spawn_target_object.py',
+        output='screen',
+    )
+
+    # ── Controllers ──────────────────────────────────────────────────────────
+    spawn_controllers_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('hrd_moveit_config'),
+                'launch', 'spawn_controllers.launch.py',
+            )
+        )
+    )
 
     # ── Timing ──────────────────────────────────────────────────────────────
     delayed_spawn = TimerAction(period=10.0, actions=[spawn_entity])
+    delayed_spawn_cylinder = TimerAction(
+        period=12.0, actions=[spawn_cylinder],
+    )
+    delayed_spawn_controllers = TimerAction(
+        period=15.0, actions=[spawn_controllers_launch],
+    )
+    delayed_target_rviz = TimerAction(
+        period=20.0, actions=[publish_collision_object],
+    )
 
     # ── Model path ──────────────────────────────────────────────────────────
     parent = os.path.abspath(os.path.join(pkg_share, '..'))
@@ -133,8 +219,10 @@ def generate_launch_description():
     ld.add_action(gazebo)
     ld.add_action(robot_state_pub)
     ld.add_action(delayed_spawn)
+    ld.add_action(delayed_spawn_cylinder)
+    ld.add_action(delayed_spawn_controllers)
+    ld.add_action(delayed_target_rviz)
     for entity in mg_ld.entities:
         ld.add_entity(entity)
-    for entity in rviz_ld.entities:
-        ld.add_entity(entity)
+    ld.add_action(rviz_node)
     return ld

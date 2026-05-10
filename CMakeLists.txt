@@ -12,7 +12,10 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/launch")
     PATTERN "setup_assistant.launch" EXCLUDE)
 endif()
 
-install(PROGRAMS scripts/demo_dual_arm_planning.py
+install(PROGRAMS
+  scripts/demo_dual_arm_planning.py
+  scripts/demo_dual_arm_reach.py
+  scripts/spawn_target_object.py
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
