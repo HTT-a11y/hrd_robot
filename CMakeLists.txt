@@ -8,6 +8,9 @@ find_package(rclcpp_action REQUIRED)
 find_package(moveit_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(shape_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+find_package(moveit_ros_planning_interface REQUIRED)
 
 # ── C++ demo executable ────────────────────────────────────────────────────
 add_executable(demo_dual_arm_reach_cpp src/demo_dual_arm_reach.cpp)
@@ -16,7 +19,10 @@ ament_target_dependencies(demo_dual_arm_reach_cpp
   rclcpp_action
   moveit_msgs
   geometry_msgs
-  shape_msgs)
+  shape_msgs
+  tf2
+  tf2_geometry_msgs
+  moveit_ros_planning_interface)
 install(TARGETS demo_dual_arm_reach_cpp DESTINATION lib/${PROJECT_NAME})
 
 # ── Python scripts ─────────────────────────────────────────────────────────
