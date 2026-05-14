@@ -33,7 +33,7 @@ class TargetObjectPublisher(Node):
         # cylinder: height 0.1 m, radius 0.02 m
         cylinder = SolidPrimitive()
         cylinder.type = SolidPrimitive.CYLINDER
-        cylinder.dimensions = [0.1, 0.02]
+        cylinder.dimensions = [0.25, 0.02]
 
         pose = Pose()
         pose.position.x = 0.0

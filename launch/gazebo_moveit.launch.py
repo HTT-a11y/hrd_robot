@@ -148,10 +148,10 @@ def generate_launch_description():
     <static>true</static>
     <link name="cylinder_link">
       <collision name="collision">
-        <geometry><cylinder><radius>0.02</radius><length>0.1</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.02</radius><length>0.25</length></cylinder></geometry>
       </collision>
       <visual name="visual">
-        <geometry><cylinder><radius>0.02</radius><length>0.1</length></cylinder></geometry>
+        <geometry><cylinder><radius>0.02</radius><length>0.25</length></cylinder></geometry>
         <material>
           <ambient>1 0 0 1</ambient>
           <diffuse>1 0 0 1</diffuse>

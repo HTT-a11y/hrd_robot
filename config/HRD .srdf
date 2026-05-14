@@ -10,16 +10,17 @@
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="left_arm">
-        <chain base_link="left_arm_base_link" tip_link="left_link_7"/>
+        <chain base_link="left_arm_base_link" tip_link="left_tcp_link"/>
     </group>
     <group name="right_arm">
-        <chain base_link="right_arm_base_link" tip_link="right_link_7"/>
+        <chain base_link="right_arm_base_link" tip_link="right_tcp_link"/>
     </group>
     <group name="dual_arms">
         <group name="left_arm"/>
         <group name="right_arm"/>
     </group>
     <group name="left_hand">
+        <link name="left_tcp_link"/>
         <link name="left_hand_base_link"/>
         <link name="left_index_1"/>
         <link name="left_index_2"/>
@@ -52,6 +53,7 @@
         <link name="left_thumb_force_sensor_1"/>
     </group>
     <group name="right_hand">
+        <link name="right_tcp_link"/>
         <link name="right_hand_base_link"/>
         <link name="right_hand_frame"/>
         <link name="right_index_1"/>
@@ -134,8 +136,8 @@
         <joint name="right_thumb_2_joint" value="0"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_hand_ee" parent_link="left_link_7" group="left_hand" parent_group="left_arm"/>
-    <end_effector name="right_hand_ee" parent_link="right_link_7" group="right_hand" parent_group="right_arm"/>
+    <end_effector name="left_hand_ee" parent_link="left_tcp_link" group="left_hand" parent_group="left_arm"/>
+    <end_effector name="right_hand_ee" parent_link="right_tcp_link" group="right_hand" parent_group="right_arm"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
