@@ -32,7 +32,7 @@
 using namespace std::chrono_literals;
 
 // ═══════════════════════════════════════════════════════════════════════════
-//  Dynamic grasp-pose solver
+//  Dynamic grasp-pose solver (robot faces -Y, arms approach from +/-X)
 // ═══════════════════════════════════════════════════════════════════════════
 
 void calculate_dynamic_grasp_poses(
@@ -44,22 +44,24 @@ void calculate_dynamic_grasp_poses(
     tf2::Transform T_world_to_cyl;
     tf2::fromMsg(cyl_pose, T_world_to_cyl);
 
-    // ── Left arm ──────────────────────────────────────────────────────────
-    //   Local X (thumb) → world +X      Local Y (palm) → world -Y
-    //   Local Z (fingers) → world -Z
-    tf2::Matrix3x3 R_left(1,0,0, 0,-1,0, 0,0,-1);
-    tf2::Vector3 t_left_pre  (0.0,  safe_dist,  z_offset);
-    tf2::Vector3 t_left_grasp(0.0, grasp_dist,  z_offset);
+    // ── Left arm (from -X side, palm → +X, fingers ↓) ─────────────────────
+    //   Local Y(palm) → world +X (toward cylinder)
+    //   Local Z(fingers) → world -Z (down)
+    //   Local X(thumb) → Y×Z → world +Y (backward)
+    tf2::Matrix3x3 R_left(0,1,0, 1,0,0, 0,0,-1);
+    tf2::Vector3 t_left_pre  (-safe_dist,  0.0,  z_offset);
+    tf2::Vector3 t_left_grasp(-grasp_dist,  0.0,  z_offset);
 
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_left, t_left_pre),  left_pre);
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_left, t_left_grasp), left_grasp);
 
-    // ── Right arm ─────────────────────────────────────────────────────────
-    //   Local X (thumb) → world -X      Local Y (palm) → world +Y
-    //   Local Z (fingers) → world -Z
-    tf2::Matrix3x3 R_right(-1,0,0, 0,1,0, 0,0,-1);
-    tf2::Vector3 t_right_pre  (0.0, -safe_dist,  -z_offset);
-    tf2::Vector3 t_right_grasp(0.0, -grasp_dist, -z_offset);
+    // ── Right arm (from +X side, palm → -X, fingers ↓) ────────────────────
+    //   Local Y(palm) → world -X (toward cylinder)
+    //   Local Z(fingers) → world -Z (down)
+    //   Local X(thumb) → Y×Z → world -Y (forward)
+    tf2::Matrix3x3 R_right(0,-1,0, -1,0,0, 0,0,-1);
+    tf2::Vector3 t_right_pre  (safe_dist,  0.0, -z_offset);
+    tf2::Vector3 t_right_grasp(grasp_dist,  0.0, -z_offset);
 
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_right, t_right_pre),  right_pre);
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_right, t_right_grasp), right_grasp);
@@ -106,7 +108,7 @@ bool execute_two_stage_grasp(
     RCLCPP_INFO(log, "[%s] Stage 1 — moving to pre-grasp...", name.c_str());
     group.setPoseTarget(pre_pose);
     group.setGoalPositionTolerance(0.01);
-    group.setGoalOrientationTolerance(0.1);
+    group.setGoalOrientationTolerance(0.5);  // ~28 deg — loose for multi-finger hand
     group.setPlanningTime(10.0);
     group.setNumPlanningAttempts(20);
     group.setMaxVelocityScalingFactor(0.5);
@@ -134,8 +136,13 @@ bool execute_two_stage_grasp(
     const double eef_step = 0.01;       // 1 cm step
     const double jump_threshold = 0.0;   // no jumps allowed
 
+    moveit_msgs::msg::Constraints path_constraints;
+    bool avoid_collisions = false;
+    moveit::core::MoveItErrorCode ec;
+
     double fraction = group.computeCartesianPath(
-        waypoints, eef_step, jump_threshold, trajectory);
+        waypoints, eef_step, jump_threshold, trajectory,
+        path_constraints, avoid_collisions, &ec);
 
     if (fraction >= 0.9) {
         group.execute(trajectory);
