@@ -285,8 +285,6 @@ def main():
     CYL = (0.0, -0.65, 0.75)
 
     LEFT_TCP  = (0.3, -0.58, 0.82)   # front-left, upper half
-    # Right arm workspace probe: try wrist IK to narrow down reachable Y range
-    RIGHT_TCP = None  # will be determined by probing below
 
     # ── Step 1 — Home ────────────────────────────────────────────────────
     demo.get_logger().info("=" * 60)
@@ -297,43 +295,12 @@ def main():
     demo.plan_joint_goal("right_arm", [HOME[j] for j in ARM_JOINTS["right_arm"]])
     time.sleep(2.0)
 
-    # ── Step 2 — Left arm ────────────────────────────────────────────────
+    # ── Step 2 — Right arm FIRST (empty scene, no left arm in the way) ───
     demo.get_logger().info("=" * 60)
-    demo.get_logger().info(f"Step 2/3: Left  arm -> {LEFT_TCP}")
-    demo.get_logger().info("=" * 60)
-
-    # Diagnostic: can IK even find a solution?
-    left_reachable = demo.diagnose_ik("left_arm", "left_tcp_link", *LEFT_TCP)
-
-    l_dx = CYL[0] - LEFT_TCP[0]
-    l_dy = CYL[1] - LEFT_TCP[1]
-    l_dz = CYL[2] - LEFT_TCP[2]
-    left_orient = _approach_quat(l_dx, l_dy, l_dz)
-
-    left_ok = demo.plan_pose_goal(
-        "left_arm",
-        [demo._pos_constraint("left_tcp_link", *LEFT_TCP, tol=0.05)],
-        [demo._orient_constraint("left_tcp_link", *left_orient)],
-    )
-    time.sleep(1.0)
-
-    # ── Step 3 — Right arm: test seed hypothesis ──────────────────────────
-    demo.get_logger().info("=" * 60)
-    demo.get_logger().info("Step 3/3: Right arm — move to neutral seed, then IK")
+    demo.get_logger().info("Step 2/3: RIGHT arm -> (0.3, -0.58, 0.82) [FIRST]")
     demo.get_logger().info("=" * 60)
 
-    # Move right arm to a "neutral" configuration first (like left arm home but mirrored)
-    # This gives KDL a better seed than the default right-arm home pose
-    NEUTRAL_RIGHT = [0.0, -0.06, 0.0, 0.0, 0.0, 0.0, -1.57]
-    demo.get_logger().info("Moving right arm to neutral seed...")
-    demo.plan_joint_goal("right_arm", NEUTRAL_RIGHT)
-    time.sleep(2.0)
-
-    # Now try IK from this neutral seed
-    RIGHT_TCP = (0.3, -0.58, 0.82)  # same target as left arm
-    demo.get_logger().info(f"Testing IK from neutral seed -> {RIGHT_TCP}")
-    right_reachable = demo.diagnose_ik("right_arm", "right_tcp_link", *RIGHT_TCP)
-
+    RIGHT_TCP = (0.3, -0.58, 0.82)
     r_dx = CYL[0] - RIGHT_TCP[0]
     r_dy = CYL[1] - RIGHT_TCP[1]
     r_dz = CYL[2] - RIGHT_TCP[2]
@@ -344,16 +311,22 @@ def main():
         [demo._pos_constraint("right_tcp_link", *RIGHT_TCP, tol=0.05)],
         [demo._orient_constraint("right_tcp_link", *right_orient)],
     )
+    time.sleep(1.0)
 
-    r_dx = CYL[0] - right_tcp[0]
-    r_dy = CYL[1] - right_tcp[1]
-    r_dz = CYL[2] - right_tcp[2]
-    right_orient = _approach_quat(r_dx, r_dy, r_dz)
+    # ── Step 3 — Left arm SECOND ─────────────────────────────────────────
+    demo.get_logger().info("=" * 60)
+    demo.get_logger().info("Step 3/3: LEFT arm -> (0.3, -0.58, 0.82) [SECOND]")
+    demo.get_logger().info("=" * 60)
 
-    right_ok = demo.plan_pose_goal(
-        "right_arm",
-        [demo._pos_constraint("right_tcp_link", *right_tcp, tol=0.05)],
-        [demo._orient_constraint("right_tcp_link", *right_orient)],
+    l_dx = CYL[0] - LEFT_TCP[0]
+    l_dy = CYL[1] - LEFT_TCP[1]
+    l_dz = CYL[2] - LEFT_TCP[2]
+    left_orient = _approach_quat(l_dx, l_dy, l_dz)
+
+    left_ok = demo.plan_pose_goal(
+        "left_arm",
+        [demo._pos_constraint("left_tcp_link", *LEFT_TCP, tol=0.05)],
+        [demo._orient_constraint("left_tcp_link", *left_orient)],
     )
 
     # ── Summary ──────────────────────────────────────────────────────────
