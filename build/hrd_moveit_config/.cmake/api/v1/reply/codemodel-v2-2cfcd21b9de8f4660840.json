@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-f0e610cbd648408ec9fb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "hrd_moveit_config",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "demo_dual_arm_reach_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-demo_dual_arm_reach_cpp-3d5d6d2ffae856c25fd7.json",
+					"name" : "demo_dual_arm_reach_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hrd_moveit_config_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hrd_moveit_config_uninstall-848439841f7469e7fa35.json",
+					"name" : "hrd_moveit_config_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-ef636a895662b19d7149.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config",
+		"source" : "/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

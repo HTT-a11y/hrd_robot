@@ -1,0 +1,106 @@
+[0.008s] Invoking command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config -DCMAKE_INSTALL_PREFIX=/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config
+[0.188s] -- The C compiler identification is GNU 11.4.0
+[0.284s] -- The CXX compiler identification is GNU 11.4.0
+[0.293s] -- Detecting C compiler ABI info
+[0.341s] -- Detecting C compiler ABI info - done
+[0.345s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.346s] -- Detecting C compile features
+[0.346s] -- Detecting C compile features - done
+[0.349s] -- Detecting CXX compiler ABI info
+[0.395s] -- Detecting CXX compiler ABI info - done
+[0.402s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.402s] -- Detecting CXX compile features
+[0.402s] -- Detecting CXX compile features - done
+[0.408s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.498s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.572s] -- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)
+[0.621s] -- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.625s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.634s] -- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.645s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.660s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.700s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.703s] -- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.768s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.789s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.816s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.826s] -- Looking for pthread.h
+[0.868s] -- Looking for pthread.h - found
+[0.868s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.906s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.906s] -- Found Threads: TRUE  
+[0.952s] -- Found rclcpp_action: 16.0.19 (/opt/ros/humble/share/rclcpp_action/cmake)
+[0.983s] -- Found moveit_msgs: 2.2.1 (/opt/ros/humble/share/moveit_msgs/cmake)
+[1.086s] -- Found tf2: 0.25.20 (/opt/ros/humble/share/tf2/cmake)
+[1.095s] -- Found tf2_geometry_msgs: 0.25.20 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[1.108s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[1.109s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[1.109s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[1.157s] -- Found moveit_ros_planning_interface: 2.5.9 (/opt/ros/humble/share/moveit_ros_planning_interface/cmake)
+[1.180s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread 
+[1.199s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread 
+[1.224s] -- Found parameter_traits: 0.7.1 (/opt/ros/humble/share/parameter_traits/cmake)
+[1.238s] -- Found rclcpp_lifecycle: 16.0.19 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)
+[1.260s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem 
+[1.305s] -- library: /usr/lib/x86_64-linux-gnu/libcurl.so
+[1.375s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono 
+[1.396s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options 
+[1.412s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread 
+[1.470s] -- Configuring done
+[1.499s] -- Generating done
+[1.503s] -- Build files have been written to: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config
+[1.510s] Invoked command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config -DCMAKE_INSTALL_PREFIX=/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config
+[1.511s] Invoking command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config -- -j16 -l16
+[1.538s] [ 50%] [32mBuilding CXX object CMakeFiles/demo_dual_arm_reach_cpp.dir/src/demo_dual_arm_reach.cpp.o[0m
+[5.758s] [100%] [32m[1mLinking CXX executable demo_dual_arm_reach_cpp[0m
+[6.044s] [100%] Built target demo_dual_arm_reach_cpp
+[6.049s] Invoked command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config -- -j16 -l16
+[6.054s] Invoking command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config
+[6.057s] -- Install configuration: ""
+[6.057s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach_cpp
+[6.058s] -- Set runtime path of "/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach_cpp" to ""
+[6.058s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_planning.py
+[6.058s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/spawn_target_object.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/print_tcp_pose.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/__pycache__
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/__pycache__/gazebo_moveit.launch.cpython-310.pyc
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/move_group.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/gazebo_moveit.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/rsp.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/moveit_rviz.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/demo.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/run_cpp_demo.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/spawn_controllers.launch.py
+[6.059s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/warehouse_db.launch.py
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/static_virtual_joint_tfs.launch.py
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/setup_assistant.launch.py
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/moveit.rviz
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .urdf.xacro
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/kinematics.yaml
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .srdf
+[6.060s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/ros2_controllers.yaml
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .ros2_control.xacro
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/pilz_cartesian_limits.yaml
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/moveit_controllers.yaml
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/joint_limits.yaml
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/initial_positions.yaml
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/.setup_assistant
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/package_run_dependencies/hrd_moveit_config
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/parent_prefix_path/hrd_moveit_config
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/ament_prefix_path.sh
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/ament_prefix_path.dsv
+[6.061s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/path.sh
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/path.dsv
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.bash
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.sh
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.zsh
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.dsv
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/package.dsv
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/packages/hrd_moveit_config
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/cmake/hrd_moveit_configConfig.cmake
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/cmake/hrd_moveit_configConfig-version.cmake
+[6.062s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/package.xml
+[6.063s] Invoked command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config

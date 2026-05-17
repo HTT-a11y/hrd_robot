@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: turn_on_hrd_robot
+    relative_path: HRD_description/HRD.urdf.xacro
+  srdf:
+    relative_path: config/HRD .srdf
+  package_settings:
+    author_name: HTT
+    author_email: 15216968378@163.com
+    generated_timestamp: 1778314526
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

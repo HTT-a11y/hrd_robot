@@ -1,0 +1,51 @@
+[0.006s] Invoking command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config -- -j16 -l16
+[0.039s] [100%] Built target demo_dual_arm_reach_cpp
+[0.044s] Invoked command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config -- -j16 -l16
+[0.049s] Invoking command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config
+[0.052s] -- Install configuration: ""
+[0.052s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach_cpp
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_planning.py
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach.py
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/spawn_target_object.py
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/print_tcp_pose.py
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/__pycache__
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/__pycache__/gazebo_moveit.launch.cpython-310.pyc
+[0.053s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/move_group.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/gazebo_moveit.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/rsp.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/moveit_rviz.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/demo.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/run_cpp_demo.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/spawn_controllers.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/warehouse_db.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/static_virtual_joint_tfs.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/setup_assistant.launch.py
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/moveit.rviz
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .urdf.xacro
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/kinematics.yaml
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .srdf
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/ros2_controllers.yaml
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .ros2_control.xacro
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/pilz_cartesian_limits.yaml
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/moveit_controllers.yaml
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/joint_limits.yaml
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/initial_positions.yaml
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/.setup_assistant
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/package_run_dependencies/hrd_moveit_config
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/parent_prefix_path/hrd_moveit_config
+[0.054s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/ament_prefix_path.sh
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/ament_prefix_path.dsv
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/path.sh
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/path.dsv
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.bash
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.sh
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.zsh
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.dsv
+[0.055s] -- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/package.dsv
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/packages/hrd_moveit_config
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/cmake/hrd_moveit_configConfig.cmake
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/cmake/hrd_moveit_configConfig-version.cmake
+[0.055s] -- Up-to-date: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/package.xml
+[0.055s] Invoked command in '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config

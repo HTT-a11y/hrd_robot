@@ -1,0 +1,103 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    left_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    right_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    left_hand_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    right_hand_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+joint_state_broadcaster:
+  ros__parameters:
+    joints:
+      - left_link_1_joint
+      - left_link_2_joint
+      - left_link_3_joint
+      - left_link_4_joint
+      - left_link_5_joint
+      - left_link_6_joint
+      - left_link_7_joint
+      - right_link_1_joint
+      - right_link_2_joint
+      - right_link_3_joint
+      - right_link_4_joint
+      - right_link_5_joint
+      - right_link_6_joint
+      - right_link_7_joint
+    state_interfaces:
+      - position
+      - velocity
+
+left_arm_controller:
+  ros__parameters:
+    joints:
+      - left_link_1_joint
+      - left_link_2_joint
+      - left_link_3_joint
+      - left_link_4_joint
+      - left_link_5_joint
+      - left_link_6_joint
+      - left_link_7_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+right_arm_controller:
+  ros__parameters:
+    joints:
+      - right_link_1_joint
+      - right_link_2_joint
+      - right_link_3_joint
+      - right_link_4_joint
+      - right_link_5_joint
+      - right_link_6_joint
+      - right_link_7_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+left_hand_controller:
+  ros__parameters:
+    joints:
+      - left_index_1_joint
+      - left_little_1_joint
+      - left_middle_1_joint
+      - left_ring_1_joint
+      - left_thumb_1_joint
+      - left_thumb_2_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+right_hand_controller:
+  ros__parameters:
+    joints:
+      - right_index_1_joint
+      - right_little_1_joint
+      - right_middle_1_joint
+      - right_ring_1_joint
+      - right_thumb_1_joint
+      - right_thumb_2_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

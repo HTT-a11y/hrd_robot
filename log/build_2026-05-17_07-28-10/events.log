@@ -1,0 +1,174 @@
+[0.000000] (-) TimerEvent: {}
+[0.000465] (hrd_moveit_config) JobQueued: {'identifier': 'hrd_moveit_config', 'dependencies': OrderedDict()}
+[0.000670] (hrd_moveit_config) JobStarted: {'identifier': 'hrd_moveit_config'}
+[0.007972] (hrd_moveit_config) JobProgress: {'identifier': 'hrd_moveit_config', 'progress': 'cmake'}
+[0.008124] (hrd_moveit_config) Command: {'cmd': ['/usr/bin/cmake', '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config', '-DCMAKE_INSTALL_PREFIX=/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config'], 'cwd': '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config', 'env': OrderedDict([('HOSTNAME', 'ether-Nitro-AN515-58'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/'), ('ROS_PYTHON_VERSION', '3'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':1'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('GAZEBO_MODEL_DATABASE_URI', ''), ('PWD', '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.100266] (-) TimerEvent: {}
+[0.188504] (hrd_moveit_config) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.200445] (-) TimerEvent: {}
+[0.285013] (hrd_moveit_config) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.293121] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.300575] (-) TimerEvent: {}
+[0.341774] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.345862] (hrd_moveit_config) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.346545] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.346982] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.349136] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.395830] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.400744] (-) TimerEvent: {}
+[0.402344] (hrd_moveit_config) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.402460] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.402891] (hrd_moveit_config) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.408546] (hrd_moveit_config) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.498715] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.500878] (-) TimerEvent: {}
+[0.572746] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.601011] (-) TimerEvent: {}
+[0.621092] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.626070] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.634778] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.646078] (hrd_moveit_config) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.660357] (hrd_moveit_config) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.700812] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.701068] (-) TimerEvent: {}
+[0.703699] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.768737] (hrd_moveit_config) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.789304] (hrd_moveit_config) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.801180] (-) TimerEvent: {}
+[0.816980] (hrd_moveit_config) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.826911] (hrd_moveit_config) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.868627] (hrd_moveit_config) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.868791] (hrd_moveit_config) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.901403] (-) TimerEvent: {}
+[0.906327] (hrd_moveit_config) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.907061] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.952276] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rclcpp_action: 16.0.19 (/opt/ros/humble/share/rclcpp_action/cmake)\n'}
+[0.983148] (hrd_moveit_config) StdoutLine: {'line': b'-- Found moveit_msgs: 2.2.1 (/opt/ros/humble/share/moveit_msgs/cmake)\n'}
+[1.001614] (-) TimerEvent: {}
+[1.086364] (hrd_moveit_config) StdoutLine: {'line': b'-- Found tf2: 0.25.20 (/opt/ros/humble/share/tf2/cmake)\n'}
+[1.095846] (hrd_moveit_config) StdoutLine: {'line': b'-- Found tf2_geometry_msgs: 0.25.20 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)\n'}
+[1.101824] (-) TimerEvent: {}
+[1.108352] (hrd_moveit_config) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)\n'}
+[1.109438] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[1.109585] (hrd_moveit_config) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[1.157171] (hrd_moveit_config) StdoutLine: {'line': b'-- Found moveit_ros_planning_interface: 2.5.9 (/opt/ros/humble/share/moveit_ros_planning_interface/cmake)\n'}
+[1.180786] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread \n'}
+[1.199149] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread \n'}
+[1.202036] (-) TimerEvent: {}
+[1.224745] (hrd_moveit_config) StdoutLine: {'line': b'-- Found parameter_traits: 0.7.1 (/opt/ros/humble/share/parameter_traits/cmake)\n'}
+[1.238370] (hrd_moveit_config) StdoutLine: {'line': b'-- Found rclcpp_lifecycle: 16.0.19 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)\n'}
+[1.260273] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem \n'}
+[1.302255] (-) TimerEvent: {}
+[1.305899] (hrd_moveit_config) StdoutLine: {'line': b'-- library: /usr/lib/x86_64-linux-gnu/libcurl.so\n'}
+[1.375097] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono \n'}
+[1.396895] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options \n'}
+[1.402464] (-) TimerEvent: {}
+[1.412686] (hrd_moveit_config) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread \n'}
+[1.470704] (hrd_moveit_config) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.499243] (hrd_moveit_config) StdoutLine: {'line': b'-- Generating done\n'}
+[1.502665] (-) TimerEvent: {}
+[1.503415] (hrd_moveit_config) StdoutLine: {'line': b'-- Build files have been written to: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config\n'}
+[1.510433] (hrd_moveit_config) CommandEnded: {'returncode': 0}
+[1.510954] (hrd_moveit_config) JobProgress: {'identifier': 'hrd_moveit_config', 'progress': 'build'}
+[1.511910] (hrd_moveit_config) Command: {'cmd': ['/usr/bin/cmake', '--build', '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config', '--', '-j16', '-l16'], 'cwd': '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config', 'env': OrderedDict([('HOSTNAME', 'ether-Nitro-AN515-58'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/'), ('ROS_PYTHON_VERSION', '3'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':1'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('GAZEBO_MODEL_DATABASE_URI', ''), ('PWD', '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.538824] (hrd_moveit_config) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/demo_dual_arm_reach_cpp.dir/src/demo_dual_arm_reach.cpp.o\x1b[0m\n'}
+[1.602889] (-) TimerEvent: {}
+[1.703256] (-) TimerEvent: {}
+[1.803630] (-) TimerEvent: {}
+[1.903951] (-) TimerEvent: {}
+[2.004330] (-) TimerEvent: {}
+[2.104695] (-) TimerEvent: {}
+[2.204958] (-) TimerEvent: {}
+[2.305335] (-) TimerEvent: {}
+[2.405708] (-) TimerEvent: {}
+[2.506087] (-) TimerEvent: {}
+[2.606411] (-) TimerEvent: {}
+[2.706800] (-) TimerEvent: {}
+[2.807179] (-) TimerEvent: {}
+[2.907554] (-) TimerEvent: {}
+[3.007941] (-) TimerEvent: {}
+[3.108321] (-) TimerEvent: {}
+[3.208695] (-) TimerEvent: {}
+[3.308960] (-) TimerEvent: {}
+[3.409252] (-) TimerEvent: {}
+[3.509514] (-) TimerEvent: {}
+[3.609898] (-) TimerEvent: {}
+[3.710278] (-) TimerEvent: {}
+[3.810658] (-) TimerEvent: {}
+[3.911039] (-) TimerEvent: {}
+[4.011420] (-) TimerEvent: {}
+[4.111809] (-) TimerEvent: {}
+[4.212128] (-) TimerEvent: {}
+[4.312514] (-) TimerEvent: {}
+[4.412925] (-) TimerEvent: {}
+[4.513219] (-) TimerEvent: {}
+[4.613564] (-) TimerEvent: {}
+[4.713887] (-) TimerEvent: {}
+[4.814241] (-) TimerEvent: {}
+[4.914702] (-) TimerEvent: {}
+[5.015064] (-) TimerEvent: {}
+[5.115430] (-) TimerEvent: {}
+[5.215813] (-) TimerEvent: {}
+[5.316171] (-) TimerEvent: {}
+[5.416513] (-) TimerEvent: {}
+[5.516856] (-) TimerEvent: {}
+[5.617111] (-) TimerEvent: {}
+[5.717362] (-) TimerEvent: {}
+[5.758335] (hrd_moveit_config) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable demo_dual_arm_reach_cpp\x1b[0m\n'}
+[5.817558] (-) TimerEvent: {}
+[5.917780] (-) TimerEvent: {}
+[6.018128] (-) TimerEvent: {}
+[6.044501] (hrd_moveit_config) StdoutLine: {'line': b'[100%] Built target demo_dual_arm_reach_cpp\n'}
+[6.049651] (hrd_moveit_config) CommandEnded: {'returncode': 0}
+[6.050347] (hrd_moveit_config) JobProgress: {'identifier': 'hrd_moveit_config', 'progress': 'install'}
+[6.054537] (hrd_moveit_config) Command: {'cmd': ['/usr/bin/cmake', '--install', '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config'], 'cwd': '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config', 'env': OrderedDict([('HOSTNAME', 'ether-Nitro-AN515-58'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/'), ('ROS_PYTHON_VERSION', '3'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':1'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('GAZEBO_MODEL_DATABASE_URI', ''), ('PWD', '/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/build/hrd_moveit_config'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[6.057933] (hrd_moveit_config) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[6.058028] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach_cpp\n'}
+[6.058297] (hrd_moveit_config) StdoutLine: {'line': b'-- Set runtime path of "/root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach_cpp" to ""\n'}
+[6.058360] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_planning.py\n'}
+[6.059121] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/demo_dual_arm_reach.py\n'}
+[6.059191] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/spawn_target_object.py\n'}
+[6.059225] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/lib/hrd_moveit_config/print_tcp_pose.py\n'}
+[6.059367] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch\n'}
+[6.059452] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/__pycache__\n'}
+[6.059488] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/__pycache__/gazebo_moveit.launch.cpython-310.pyc\n'}
+[6.059518] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/move_group.launch.py\n'}
+[6.059558] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/gazebo_moveit.launch.py\n'}
+[6.059586] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/rsp.launch.py\n'}
+[6.059686] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/moveit_rviz.launch.py\n'}
+[6.059803] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/demo.launch.py\n'}
+[6.059963] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/run_cpp_demo.launch.py\n'}
+[6.060037] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/spawn_controllers.launch.py\n'}
+[6.060092] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/warehouse_db.launch.py\n'}
+[6.060178] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/static_virtual_joint_tfs.launch.py\n'}
+[6.060334] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/launch/setup_assistant.launch.py\n'}
+[6.060493] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config\n'}
+[6.060534] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/moveit.rviz\n'}
+[6.060658] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .urdf.xacro\n'}
+[6.060818] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/kinematics.yaml\n'}
+[6.060860] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .srdf\n'}
+[6.061011] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/ros2_controllers.yaml\n'}
+[6.061232] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/HRD .ros2_control.xacro\n'}
+[6.061271] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/pilz_cartesian_limits.yaml\n'}
+[6.061338] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/moveit_controllers.yaml\n'}
+[6.061476] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/joint_limits.yaml\n'}
+[6.061517] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/config/initial_positions.yaml\n'}
+[6.061829] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/.setup_assistant\n'}
+[6.061930] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/package_run_dependencies/hrd_moveit_config\n'}
+[6.062026] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/parent_prefix_path/hrd_moveit_config\n'}
+[6.062071] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/ament_prefix_path.sh\n'}
+[6.062098] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/ament_prefix_path.dsv\n'}
+[6.062149] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/path.sh\n'}
+[6.062190] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/environment/path.dsv\n'}
+[6.062232] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.bash\n'}
+[6.062272] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.sh\n'}
+[6.062313] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.zsh\n'}
+[6.062357] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/local_setup.dsv\n'}
+[6.062386] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/package.dsv\n'}
+[6.062426] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/ament_index/resource_index/packages/hrd_moveit_config\n'}
+[6.062466] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/cmake/hrd_moveit_configConfig.cmake\n'}
+[6.062506] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/cmake/hrd_moveit_configConfig-version.cmake\n'}
+[6.062545] (hrd_moveit_config) StdoutLine: {'line': b'-- Installing: /root/HRD_ws/hrd_project/hrd_ros2/src/hrd_moveit_config/install/hrd_moveit_config/share/hrd_moveit_config/package.xml\n'}
+[6.063402] (hrd_moveit_config) CommandEnded: {'returncode': 0}
+[6.084890] (hrd_moveit_config) JobEnded: {'identifier': 'hrd_moveit_config', 'rc': 0}
+[6.085211] (-) EventReactorShutdown: {}

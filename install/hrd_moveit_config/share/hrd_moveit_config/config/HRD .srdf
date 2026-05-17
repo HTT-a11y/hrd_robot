@@ -87,14 +87,21 @@
         <link name="right_thumb_force_sensor_1"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="home_right_arm" group="right_arm">
-        <joint name="right_link_1_joint" value="-0.0515"/>
+    <group_state name="home" group="dual_arms">
+        <joint name="left_link_1_joint" value="-0.0172"/>
+        <joint name="left_link_2_joint" value="-0.0627"/>
+        <joint name="left_link_3_joint" value="0"/>
+        <joint name="left_link_4_joint" value="0"/>
+        <joint name="left_link_5_joint" value="0"/>
+        <joint name="left_link_6_joint" value="0"/>
+        <joint name="left_link_7_joint" value="-1.8389"/>
+        <joint name="right_link_1_joint" value="0.0858"/>
         <joint name="right_link_2_joint" value="-0.0877"/>
         <joint name="right_link_3_joint" value="-0.2231"/>
         <joint name="right_link_4_joint" value="-0.1121"/>
         <joint name="right_link_5_joint" value="0.0515"/>
         <joint name="right_link_6_joint" value="-0.1111"/>
-        <joint name="right_link_7_joint" value="6.28"/>
+        <joint name="right_link_7_joint" value="1.6307"/>
     </group_state>
     <group_state name="left_open" group="left_hand">
         <joint name="left_index_1_joint" value="0"/>
@@ -127,15 +134,6 @@
         <joint name="right_ring_1_joint" value="1.1918"/>
         <joint name="right_thumb_1_joint" value="0"/>
         <joint name="right_thumb_2_joint" value="0"/>
-    </group_state>
-    <group_state name="home_left_arm" group="left_arm">
-        <joint name="left_link_1_joint" value="0"/>
-        <joint name="left_link_2_joint" value="0"/>
-        <joint name="left_link_3_joint" value="0"/>
-        <joint name="left_link_4_joint" value="0"/>
-        <joint name="left_link_5_joint" value="0"/>
-        <joint name="left_link_6_joint" value="0"/>
-        <joint name="left_link_7_joint" value="4.6146"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="left_hand_ee" parent_link="left_tcp_link" group="left_hand" parent_group="left_arm"/>
@@ -238,13 +236,11 @@
     <disable_collisions link1="head_Link" link2="left_link_1" reason="Never"/>
     <disable_collisions link1="head_Link" link2="left_link_2" reason="Never"/>
     <disable_collisions link1="head_Link" link2="left_link_3" reason="Never"/>
-    <disable_collisions link1="head_Link" link2="left_link_4" reason="Never"/>
     <disable_collisions link1="head_Link" link2="left_torso_arm_mount_link" reason="Never"/>
     <disable_collisions link1="head_Link" link2="right_arm_base_link" reason="Never"/>
     <disable_collisions link1="head_Link" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="head_Link" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="head_Link" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="head_Link" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="head_Link" link2="right_torso_arm_mount_link" reason="Never"/>
     <disable_collisions link1="head_Link" link2="torso_Link" reason="Never"/>
     <disable_collisions link1="head_Link" link2="torso_bend_link" reason="Default"/>
@@ -309,7 +305,6 @@
     <disable_collisions link1="left_hand_base_link" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_hand_base_link" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_hand_base_link" link2="right_link_2" reason="Never"/>
-    <disable_collisions link1="left_hand_base_link" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_hand_base_link" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_hand_base_link" link2="wheel_link_2" reason="Never"/>
     <disable_collisions link1="left_hand_base_link" link2="wheel_link_3" reason="Never"/>
@@ -344,13 +339,13 @@
     <disable_collisions link1="left_index_1" link2="left_thumb_3" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="left_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="left_thumb_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_index_1" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_index_1" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_little_force_sensor_1" reason="Never"/>
@@ -365,8 +360,10 @@
     <disable_collisions link1="left_index_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_thumb_2" reason="Never"/>
+    <disable_collisions link1="left_index_1" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_thumb_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_index_1" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_index_1" link2="wheel_link_2" reason="Never"/>
@@ -375,6 +372,7 @@
     <disable_collisions link1="left_index_2" link2="left_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="left_index_force_sensor_2" reason="Adjacent"/>
     <disable_collisions link1="left_index_2" link2="left_index_force_sensor_3" reason="Adjacent"/>
+    <disable_collisions link1="left_index_2" link2="left_link_3" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="left_link_4" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="left_link_5" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="left_link_6" reason="Never"/>
@@ -397,20 +395,25 @@
     <disable_collisions link1="left_index_2" link2="left_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="left_thumb_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_index_1" reason="Never"/>
-    <disable_collisions link1="left_index_2" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_link_2" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_link_3" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_little_1" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_middle_1" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_middle_2" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_index_2" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_index_2" link2="right_ring_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_index_2" link2="right_ring_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_ring_1" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_ring_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_index_2" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_index_2" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -458,11 +461,14 @@
     <disable_collisions link1="left_index_force_sensor_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_1" link2="right_link_5" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_1" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_1" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_1" link2="right_middle_force_sensor_2" reason="Never"/>
@@ -516,22 +522,22 @@
     <disable_collisions link1="left_index_force_sensor_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_link_2" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_2" link2="right_link_7" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_2" link2="right_link_3" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_2" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_little_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_middle_1" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_2" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_2" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_2" link2="right_ring_2" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_2" link2="right_ring_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_2" link2="right_ring_1" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_2" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_thumb_2" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_2" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="right_thumb_force_sensor_2" reason="Never"/>
@@ -541,6 +547,7 @@
     <disable_collisions link1="left_index_force_sensor_2" link2="wheel_link_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="wheel_link_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_2" link2="wheel_link_4" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_3" link2="left_link_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="left_link_4" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="left_link_5" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="left_link_6" reason="Never"/>
@@ -563,15 +570,15 @@
     <disable_collisions link1="left_index_force_sensor_3" link2="left_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="left_thumb_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_index_1" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_3" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_3" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_3" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_link_7" reason="Never"/>
+    <disable_collisions link1="left_index_force_sensor_3" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_little_force_sensor_2" reason="Never"/>
@@ -581,9 +588,7 @@
     <disable_collisions link1="left_index_force_sensor_3" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_3" link2="right_palm_force_sensor" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_ring_1" reason="Never"/>
-    <disable_collisions link1="left_index_force_sensor_3" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_index_force_sensor_3" link2="right_ring_force_sensor_3" reason="Never"/>
@@ -624,7 +629,6 @@
     <disable_collisions link1="left_link_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_1" link2="right_little_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_1" link2="right_middle_1" reason="Never"/>
-    <disable_collisions link1="left_link_1" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_link_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_1" link2="right_middle_force_sensor_3" reason="Never"/>
@@ -724,10 +728,6 @@
     <disable_collisions link1="left_link_3" link2="left_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="left_torso_arm_mount_link" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_arm_base_link" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_hand_base_link" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_index_1" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_index_2" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_link_1" reason="Never"/>
@@ -742,17 +742,9 @@
     <disable_collisions link1="left_link_3" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_middle_1" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_middle_2" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_ring_1" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_ring_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_ring_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_3" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_link_3" link2="right_thumb_3" reason="Never"/>
@@ -795,26 +787,33 @@
     <disable_collisions link1="left_link_4" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_arm_base_link" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_index_1" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_index_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_index_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_link_6" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_little_1" reason="Never"/>
-    <disable_collisions link1="left_link_4" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_little_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_link_4" link2="right_little_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_4" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_middle_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_middle_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_palm_force_sensor" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_ring_1" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_ring_2" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_ring_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_thumb_1" reason="Never"/>
-    <disable_collisions link1="left_link_4" link2="right_thumb_4" reason="Never"/>
+    <disable_collisions link1="left_link_4" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_thumb_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_4" link2="right_thumb_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_4" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="right_torso_arm_mount_link" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_link_4" link2="wheel_link_2" reason="Never"/>
@@ -847,23 +846,15 @@
     <disable_collisions link1="left_link_5" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_arm_base_link" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_index_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_link_5" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_little_2" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_little_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_middle_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_5" link2="right_thumb_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_link_5" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="right_torso_arm_mount_link" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_link_5" link2="wheel_link_2" reason="Never"/>
@@ -899,12 +890,9 @@
     <disable_collisions link1="left_link_6" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_link_6" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_link_6" link2="right_link_4" reason="Never"/>
-    <disable_collisions link1="left_link_6" link2="right_link_5" reason="Never"/>
-    <disable_collisions link1="left_link_6" link2="right_little_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_link_6" link2="right_middle_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_6" link2="right_ring_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_link_6" link2="right_ring_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_6" link2="right_ring_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_link_6" link2="right_middle_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_link_6" link2="right_thumb_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_link_6" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_6" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_link_6" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_link_6" link2="wheel_link_2" reason="Never"/>
@@ -929,6 +917,7 @@
     <disable_collisions link1="left_link_7" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="left_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_link_7" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_link_3" reason="Never"/>
@@ -936,9 +925,7 @@
     <disable_collisions link1="left_link_7" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_7" link2="right_ring_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_link_7" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_link_7" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_link_7" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_link_7" link2="wheel_link_1" reason="Never"/>
@@ -974,7 +961,6 @@
     <disable_collisions link1="left_little_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_little_1" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_little_force_sensor_1" reason="Never"/>
@@ -985,12 +971,11 @@
     <disable_collisions link1="left_little_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_little_1" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_little_1" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_thumb_3" reason="Never"/>
+    <disable_collisions link1="left_little_1" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_1" link2="right_thumb_force_sensor_3" reason="Never"/>
@@ -1022,29 +1007,23 @@
     <disable_collisions link1="left_little_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_index_2" reason="Never"/>
+    <disable_collisions link1="left_little_2" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_little_1" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_little_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_middle_2" reason="Never"/>
+    <disable_collisions link1="left_little_2" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_middle_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_ring_1" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_ring_2" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_thumb_3" reason="Never"/>
-    <disable_collisions link1="left_little_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_2" link2="right_thumb_force_sensor_3" reason="Never"/>
@@ -1074,7 +1053,6 @@
     <disable_collisions link1="left_little_force_sensor_1" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="left_thumb_force_sensor_4" reason="Never"/>
-    <disable_collisions link1="left_little_force_sensor_1" link2="right_hand_base_link" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_index_force_sensor_1" reason="Never"/>
@@ -1083,7 +1061,6 @@
     <disable_collisions link1="left_little_force_sensor_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_little_force_sensor_1" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_little_2" reason="Never"/>
@@ -1097,11 +1074,11 @@
     <disable_collisions link1="left_little_force_sensor_1" link2="right_middle_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_palm_force_sensor" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_ring_1" reason="Never"/>
-    <disable_collisions link1="left_little_force_sensor_1" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_1" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_1" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -1132,13 +1109,16 @@
     <disable_collisions link1="left_little_force_sensor_2" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="left_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_2" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_index_2" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_2" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_2" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_2" link2="right_little_force_sensor_1" reason="Never"/>
@@ -1184,6 +1164,7 @@
     <disable_collisions link1="left_little_force_sensor_3" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="left_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_3" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_index_force_sensor_2" reason="Never"/>
@@ -1192,12 +1173,13 @@
     <disable_collisions link1="left_little_force_sensor_3" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_link_4" reason="Never"/>
-    <disable_collisions link1="left_little_force_sensor_3" link2="right_link_7" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_3" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_3" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_middle_force_sensor_2" reason="Never"/>
@@ -1209,6 +1191,7 @@
     <disable_collisions link1="left_little_force_sensor_3" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_little_force_sensor_3" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_little_force_sensor_3" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -1237,32 +1220,28 @@
     <disable_collisions link1="left_middle_1" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="left_thumb_force_sensor_4" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_ring_1" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_ring_2" reason="Never"/>
+    <disable_collisions link1="left_middle_1" link2="right_palm_force_sensor" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_thumb_1" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="right_thumb_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_middle_1" link2="right_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_middle_1" link2="right_thumb_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_middle_1" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="wheel_link_2" reason="Never"/>
     <disable_collisions link1="left_middle_1" link2="wheel_link_3" reason="Never"/>
@@ -1285,31 +1264,25 @@
     <disable_collisions link1="left_middle_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_index_1" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_index_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_link_2" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_middle_2" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_middle_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_ring_2" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_thumb_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_thumb_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_middle_2" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_2" link2="wheel_link_2" reason="Never"/>
@@ -1331,6 +1304,7 @@
     <disable_collisions link1="left_middle_force_sensor_1" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="left_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_middle_force_sensor_1" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_index_force_sensor_2" reason="Never"/>
@@ -1339,12 +1313,13 @@
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_link_4" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_1" link2="right_link_6" reason="Never"/>
+    <disable_collisions link1="left_middle_force_sensor_1" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_middle_force_sensor_1" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_middle_force_sensor_2" reason="Never"/>
@@ -1356,9 +1331,9 @@
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_1" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_1" link2="wheel_link_1" reason="Never"/>
@@ -1381,13 +1356,11 @@
     <disable_collisions link1="left_middle_force_sensor_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_index_1" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_2" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_link_2" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_2" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_little_2" reason="Never"/>
@@ -1400,18 +1373,14 @@
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_middle_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_2" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_ring_2" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_2" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_3" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_2" link2="wheel_link_2" reason="Never"/>
@@ -1439,6 +1408,7 @@
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_3" reason="Never"/>
+    <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_link_7" reason="Never"/>
@@ -1453,7 +1423,6 @@
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_middle_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_3" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_ring_force_sensor_2" reason="Never"/>
@@ -1461,10 +1430,8 @@
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_3" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_middle_force_sensor_3" link2="wheel_link_2" reason="Never"/>
@@ -1483,7 +1450,9 @@
     <disable_collisions link1="left_palm_force_sensor" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="left_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_index_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_link_3" reason="Never"/>
@@ -1493,14 +1462,18 @@
     <disable_collisions link1="left_palm_force_sensor" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_middle_1" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_middle_2" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_middle_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_palm_force_sensor" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_palm_force_sensor" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_palm_force_sensor" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_palm_force_sensor" link2="right_thumb_force_sensor_3" reason="Never"/>
@@ -1521,30 +1494,27 @@
     <disable_collisions link1="left_ring_1" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="left_thumb_force_sensor_4" reason="Never"/>
-    <disable_collisions link1="left_ring_1" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_ring_1" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_ring_1" link2="right_middle_1" reason="Never"/>
+    <disable_collisions link1="left_ring_1" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_ring_1" link2="right_palm_force_sensor" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_ring_1" reason="Never"/>
-    <disable_collisions link1="left_ring_1" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_ring_1" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_thumb_4" reason="Never"/>
-    <disable_collisions link1="left_ring_1" link2="right_thumb_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_ring_1" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_ring_1" link2="wheel_link_1" reason="Never"/>
@@ -1563,14 +1533,10 @@
     <disable_collisions link1="left_ring_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_index_2" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_link_2" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_little_1" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_little_force_sensor_3" reason="Never"/>
@@ -1584,10 +1550,8 @@
     <disable_collisions link1="left_ring_2" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_thumb_3" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_thumb_4" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_thumb_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_ring_2" link2="right_thumb_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_ring_2" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_ring_2" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_ring_2" link2="wheel_link_2" reason="Never"/>
@@ -1611,8 +1575,9 @@
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_6" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_1" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_little_force_sensor_1" reason="Never"/>
@@ -1623,12 +1588,12 @@
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_1" link2="right_palm_force_sensor" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_ring_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_1" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_1" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -1654,10 +1619,9 @@
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_link_2" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_2" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_2" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_2" link2="right_link_5" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_2" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_little_1" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_little_force_sensor_3" reason="Never"/>
@@ -1673,6 +1637,7 @@
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_2" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_2" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -1691,7 +1656,6 @@
     <disable_collisions link1="left_ring_force_sensor_3" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="left_thumb_force_sensor_4" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_3" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_index_force_sensor_2" reason="Never"/>
@@ -1699,7 +1663,7 @@
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_3" reason="Never"/>
-    <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_ring_force_sensor_3" link2="right_little_1" reason="Never"/>
@@ -1738,25 +1702,26 @@
     <disable_collisions link1="left_thumb_1" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_arm_base_link" reason="Never"/>
-    <disable_collisions link1="left_thumb_1" link2="right_index_2" reason="Never"/>
+    <disable_collisions link1="left_thumb_1" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_index_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_1" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_link_5" reason="Never"/>
-    <disable_collisions link1="left_thumb_1" link2="right_link_7" reason="Never"/>
+    <disable_collisions link1="left_thumb_1" link2="right_little_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_1" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_middle_2" reason="Never"/>
+    <disable_collisions link1="left_thumb_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_1" link2="right_palm_force_sensor" reason="Never"/>
+    <disable_collisions link1="left_thumb_1" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_ring_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_thumb_1" link2="right_thumb_3" reason="Never"/>
@@ -1776,21 +1741,27 @@
     <disable_collisions link1="left_thumb_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="left_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_index_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_2" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_index_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_2" link2="right_index_force_sensor_2" reason="Never"/>
-    <disable_collisions link1="left_thumb_2" link2="right_index_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_link_1" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_little_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_middle_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_middle_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_middle_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_ring_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_ring_force_sensor_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_2" link2="right_thumb_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_2" link2="right_thumb_force_sensor_3" reason="Never"/>
@@ -1813,23 +1784,23 @@
     <disable_collisions link1="left_thumb_3" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_thumb_3" link2="right_link_6" reason="Never"/>
+    <disable_collisions link1="left_thumb_3" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_3" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_middle_force_sensor_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_3" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_3" link2="right_palm_force_sensor" reason="Never"/>
-    <disable_collisions link1="left_thumb_3" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_3" link2="right_thumb_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_3" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="right_thumb_force_sensor_2" reason="Never"/>
+    <disable_collisions link1="left_thumb_3" link2="right_thumb_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_3" link2="right_thumb_force_sensor_4" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="wheel_link_1" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="wheel_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_3" link2="wheel_link_3" reason="Never"/>
@@ -1838,6 +1809,8 @@
     <disable_collisions link1="left_thumb_4" link2="left_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="left_thumb_force_sensor_3" reason="Adjacent"/>
     <disable_collisions link1="left_thumb_4" link2="left_thumb_force_sensor_4" reason="Adjacent"/>
+    <disable_collisions link1="left_thumb_4" link2="right_index_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_4" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_index_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_index_force_sensor_3" reason="Never"/>
@@ -1845,23 +1818,18 @@
     <disable_collisions link1="left_thumb_4" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_link_4" reason="Never"/>
+    <disable_collisions link1="left_thumb_4" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_little_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_little_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_palm_force_sensor" reason="Never"/>
+    <disable_collisions link1="left_thumb_4" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_ring_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_thumb_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_thumb_2" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_thumb_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_4" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_thumb_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_4" link2="right_thumb_force_sensor_3" reason="Never"/>
@@ -1882,21 +1850,24 @@
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_link_4" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_1" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_little_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_middle_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_1" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_middle_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_1" link2="right_palm_force_sensor" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_1" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_thumb_1" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_1" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_1" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -1909,7 +1880,6 @@
     <disable_collisions link1="left_thumb_force_sensor_1" link2="wheel_link_4" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="left_thumb_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="left_thumb_force_sensor_4" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_2" link2="right_hand_base_link" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_index_force_sensor_1" reason="Never"/>
@@ -1919,7 +1889,8 @@
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_link_4" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_2" link2="right_link_7" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_2" link2="right_link_5" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_2" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_little_force_sensor_1" reason="Never"/>
@@ -1937,7 +1908,6 @@
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_thumb_1" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_2" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="right_thumb_force_sensor_1" reason="Never"/>
@@ -1949,6 +1919,7 @@
     <disable_collisions link1="left_thumb_force_sensor_2" link2="wheel_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_2" link2="wheel_link_4" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="left_thumb_force_sensor_4" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_index_force_sensor_2" reason="Never"/>
@@ -1957,8 +1928,7 @@
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_link_4" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_link_5" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_link_7" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_link_6" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_little_force_sensor_1" reason="Never"/>
@@ -1969,14 +1939,13 @@
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_middle_force_sensor_3" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_palm_force_sensor" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_thumb_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_thumb_2" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_3" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_thumb_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="right_thumb_force_sensor_2" reason="Never"/>
@@ -1986,6 +1955,8 @@
     <disable_collisions link1="left_thumb_force_sensor_3" link2="wheel_link_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="wheel_link_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_3" link2="wheel_link_4" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_4" link2="right_hand_base_link" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_4" link2="right_index_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_index_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_index_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_index_force_sensor_2" reason="Never"/>
@@ -1996,17 +1967,18 @@
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_link_4" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_link_5" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_link_6" reason="Never"/>
-    <disable_collisions link1="left_thumb_force_sensor_4" link2="right_link_7" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_little_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_little_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_little_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_little_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_little_force_sensor_3" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_4" link2="right_middle_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_middle_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_middle_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_middle_force_sensor_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_middle_force_sensor_3" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_palm_force_sensor" reason="Never"/>
+    <disable_collisions link1="left_thumb_force_sensor_4" link2="right_ring_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_ring_2" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_ring_force_sensor_1" reason="Never"/>
     <disable_collisions link1="left_thumb_force_sensor_4" link2="right_ring_force_sensor_2" reason="Never"/>
@@ -2561,7 +2533,6 @@
     <disable_collisions link1="right_middle_2" link2="right_ring_force_sensor_2" reason="Never"/>
     <disable_collisions link1="right_middle_2" link2="right_ring_force_sensor_3" reason="Never"/>
     <disable_collisions link1="right_middle_2" link2="right_thumb_1" reason="Never"/>
-    <disable_collisions link1="right_middle_2" link2="right_thumb_2" reason="Never"/>
     <disable_collisions link1="right_middle_2" link2="right_thumb_3" reason="Never"/>
     <disable_collisions link1="right_middle_2" link2="right_thumb_4" reason="Never"/>
     <disable_collisions link1="right_middle_2" link2="right_thumb_force_sensor_1" reason="Never"/>
