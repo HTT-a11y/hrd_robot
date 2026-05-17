@@ -34,9 +34,7 @@
 
 using namespace std::chrono_literals;
 
-// ═══════════════════════════════════════════════════════════════════════════
-//  Dynamic grasp-pose solver (robot faces -Y, arms approach from +/-X)
-// ═══════════════════════════════════════════════════════════════════════════
+// ── Dynamic grasp-pose solver (robot faces -X, left=+Y, right=-Y) ────────
 
 void calculate_dynamic_grasp_poses(
     const geometry_msgs::msg::Pose &cyl_pose,
@@ -47,24 +45,24 @@ void calculate_dynamic_grasp_poses(
     tf2::Transform T_world_to_cyl;
     tf2::fromMsg(cyl_pose, T_world_to_cyl);
 
-    // -- Left arm (from -X side, palm -> +X, fingers -> -Y) (handshake)
-    //   Local Y(palm) -> world +X (toward cylinder)
-    //   Local Z(fingers)-> world -Y (forward)
-    //   Local X(thumb) -> YxZ -> world -Z (down)
-    tf2::Matrix3x3 R_left(0,1,0, 0,0,-1, -1,0,0);
-    tf2::Vector3 t_left_pre  (-safe_dist,  0.0,  z_offset);
-    tf2::Vector3 t_left_grasp(-grasp_dist,  0.0,  z_offset);
+    // ── Left arm (+Y side) — "inverted" grasp ──────────────────────────────
+    //   Local Y(palm) → world -Y  (toward cylinder from left)
+    //   Local Z(fingers) → world -X (forward)
+    //   Local X(thumb) → world -Z (down)
+    tf2::Matrix3x3 R_left(0,0,-1, 0,-1,0, -1,0,0);
+    tf2::Vector3 t_left_pre  (0.0,  safe_dist,  z_offset);
+    tf2::Vector3 t_left_grasp(0.0,  grasp_dist,  z_offset);
 
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_left, t_left_pre),  left_pre);
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_left, t_left_grasp), left_grasp);
 
-    // -- Right arm (from +X side, palm -> -X, fingers -> -Y) (handshake)
-    //   Local Y(palm) -> world -X (toward cylinder)
-    //   Local Z(fingers)-> world -Y (forward)
-    //   Local X(thumb) -> YxZ -> world +Z (up)
-    tf2::Matrix3x3 R_right(0,-1,0, 0,0,-1, 1,0,0);
-    tf2::Vector3 t_right_pre  (safe_dist,  0.0, -z_offset);
-    tf2::Vector3 t_right_grasp(grasp_dist,  0.0, -z_offset);
+    // ── Right arm (-Y side) — "normal" grasp ───────────────────────────────
+    //   Local Y(palm) → world +Y  (toward cylinder from right)
+    //   Local Z(fingers) → world -X (forward)
+    //   Local X(thumb) → world +Z (up)
+    tf2::Matrix3x3 R_right(0,0,-1, 0,1,0, 1,0,0);
+    tf2::Vector3 t_right_pre  (0.0, -safe_dist, -z_offset);
+    tf2::Vector3 t_right_grasp(0.0, -grasp_dist, -z_offset);
 
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_right, t_right_pre),  right_pre);
     tf2::toMsg(T_world_to_cyl * tf2::Transform(R_right, t_right_grasp), right_grasp);
@@ -214,7 +212,7 @@ int main(int argc, char **argv) {
       cyl_obj.primitives.push_back(cyl_prim);
 
       geometry_msgs::msg::Pose cyl_pose;
-      cyl_pose.position.x = 0.0; cyl_pose.position.y = -0.65; cyl_pose.position.z = 0.85;
+      cyl_pose.position.x = 0.0; cyl_pose.position.y = -0.50; cyl_pose.position.z = 0.95;
       cyl_pose.orientation.w = 1.0;
       cyl_obj.primitive_poses.push_back(cyl_pose);
 
@@ -223,28 +221,27 @@ int main(int argc, char **argv) {
     }
     std::this_thread::sleep_for(1s);  // let the scene update propagate
 
-    // ── Hardcoded targets with palm-Y → cylinder orientation ─────────────
-    //    Cylinder at (0.0, -0.65, 0.85)
-    double cyl_x=0.0, cyl_y=-0.65, cyl_z=0.85;
-
+    // -- Hardcoded targets at verified reachable positions ------------------
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
 
-    // Left arm: upper grasp (Z=0.92), further forward (X=0.15)
-    l_pre.position.x = 0.15; l_pre.position.y = -0.58; l_pre.position.z = 0.92;
-    { double lax=cyl_x-0.15, lay=cyl_y+0.58, laz=cyl_z-0.92;
-      double qx,qy,qz,qw; quat_from_axes(lax,lay,laz, 0,0,1, qx,qy,qz,qw);
-      l_pre.orientation.x=qx; l_pre.orientation.y=qy; l_pre.orientation.z=qz; l_pre.orientation.w=qw; }
-    l_grasp.position = l_pre.position;
-    l_grasp.position.x = 0.05; l_grasp.position.y = -0.60; l_grasp.position.z = 0.90;
+    // Left arm: (0.10, -0.43, 0.95) — slightly left of cylinder, tol 3.14
+    l_pre.position.x = 0.15; l_pre.position.y = -0.30; l_pre.position.z = 1.02;
+    l_pre.orientation.w = 1.0;
+    l_grasp.position.x = 0.03; l_grasp.position.y = -0.40; l_grasp.position.z = 0.95;
+    l_grasp.position.x = 0.05; l_grasp.position.y = -0.30; l_grasp.position.z = 1.02;
 
-    // Right arm: behind cylinder (-X), lower (Z=0.76)
-    r_pre.position.x = -0.10; r_pre.position.y = -0.72; r_pre.position.z = 0.76;
-    { double rax=cyl_x+0.10, ray=cyl_y+0.72, raz=cyl_z-0.76;
+    // Right arm: (0.10, -0.43, 0.95) — slightly right, tol 0.5, use quat_from_axes
+    { double rax=-0.10, ray=0.17, raz=0.07;  // approach: right TCP -> cylinder
       double qx,qy,qz,qw; quat_from_axes(rax,ray,raz, 0,0,1, qx,qy,qz,qw);
+      r_pre.position.x = 0.10; r_pre.position.y = -0.52; r_pre.position.z = 0.88;
       r_pre.orientation.x=qx; r_pre.orientation.y=qy; r_pre.orientation.z=qz; r_pre.orientation.w=qw; }
-    r_grasp.position = r_pre.position;
-    r_grasp.position.x = -0.03; r_grasp.position.y = -0.70; r_grasp.position.z = 0.78;
+    r_grasp.position.x = 0.03; r_grasp.position.y = -0.52; r_grasp.position.z = 0.88;
+    r_grasp.orientation = r_pre.orientation;
 
+    RCLCPP_INFO(log, "Left  pre:   (%.3f, %.3f, %.3f)",
+        l_pre.position.x, l_pre.position.y, l_pre.position.z);
+    RCLCPP_INFO(log, "Left  grasp: (%.3f, %.3f, %.3f)",
+        l_grasp.position.x, l_grasp.position.y, l_grasp.position.z);
     RCLCPP_INFO(log, "Right pre:   (%.3f, %.3f, %.3f)",
         r_pre.position.x, r_pre.position.y, r_pre.position.z);
     RCLCPP_INFO(log, "Right grasp: (%.3f, %.3f, %.3f)",
@@ -258,6 +255,7 @@ int main(int argc, char **argv) {
     left_arm.setPoseReferenceFrame("base_link");
     right_arm.setEndEffectorLink("right_tcp_link");
     left_arm.setEndEffectorLink("left_tcp_link");
+
 
     RCLCPP_INFO(log, "Step 2: RIGHT arm two-stage grasp [FIRST — tight orientation]");
     RCLCPP_INFO(log, "============================================================");

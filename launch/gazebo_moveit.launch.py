@@ -175,7 +175,7 @@ def generate_launch_description():
         arguments=[
             '-entity', 'target_cylinder',
             '-file', sdf_tmp,
-            '-x', '0.0', '-y', '-0.65', '-z', '0.85',
+            '-x', '0.0', '-y', '-0.35', '-z', '0.95',
             '-timeout', '60.0',
         ],
     )
