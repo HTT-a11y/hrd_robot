@@ -213,7 +213,8 @@ int main(int argc, char **argv) {
     geometry_msgs::msg::Pose cyl_pose;
     cyl_pose.position.x = 0.05;
     cyl_pose.position.y = -0.70;
-    cyl_pose.position.z = 0.8;
+    cyl_pose.position.z = 0.80;
+    cyl_pose.orientation.w = 1.0;
 
     bool grasp_success = false;
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
@@ -235,24 +236,30 @@ int main(int argc, char **argv) {
 
         RCLCPP_INFO(log, ">>> Testing yaw: %.1f deg", yaw_deg);
 
-        // ── Test right arm ──────────────────────────────────────────────────
+        moveit::planning_interface::MoveGroupInterface::Plan dummy_plan;
+
+        // ── Layer 1: position-only (any orientation), fast 1.5s ──────────────
         right_group.setPoseTarget(r_pre);
         right_group.setGoalPositionTolerance(0.01);
-        right_group.setGoalOrientationTolerance(0.3);
-        right_group.setPlanningTime(2.0);
-        right_group.setNumPlanningAttempts(5);
-        moveit::planning_interface::MoveGroupInterface::Plan plan_r;
-        if (right_group.plan(plan_r) != moveit::core::MoveItErrorCode::SUCCESS)
+        right_group.setGoalOrientationTolerance(3.14);
+        right_group.setPlanningTime(1.5);
+        if (right_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
             continue;
 
-        // ── Test left arm ───────────────────────────────────────────────────
         left_group.setPoseTarget(l_pre);
         left_group.setGoalPositionTolerance(0.01);
-        left_group.setGoalOrientationTolerance(0.3);
-        left_group.setPlanningTime(2.0);
-        left_group.setNumPlanningAttempts(5);
-        moveit::planning_interface::MoveGroupInterface::Plan plan_l;
-        if (left_group.plan(plan_l) != moveit::core::MoveItErrorCode::SUCCESS)
+        left_group.setGoalOrientationTolerance(3.14);
+        left_group.setPlanningTime(1.5);
+        if (left_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
+            continue;
+
+        // ── Layer 2: strict RViz orientation, 0.1 rad (~6°) ──────────────────
+        right_group.setGoalOrientationTolerance(0.1);
+        if (right_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
+            continue;
+
+        left_group.setGoalOrientationTolerance(0.1);
+        if (left_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
             continue;
 
         RCLCPP_INFO(log, "FOUND reachable pose at yaw %.1f deg!", yaw_deg);
