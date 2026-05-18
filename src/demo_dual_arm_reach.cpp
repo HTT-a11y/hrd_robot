@@ -35,7 +35,7 @@
 
 using namespace std::chrono_literals;
 
-// ── Dynamic grasp-pose solver (robot faces -X, left=+Y, right=-Y) ────────
+// ── Heuristic grasp-pose solver (RViz-measured offsets + quaternions) ────
 
 void calculate_dynamic_grasp_poses(
     const geometry_msgs::msg::Pose &cyl_pose,
@@ -43,30 +43,33 @@ void calculate_dynamic_grasp_poses(
     geometry_msgs::msg::Pose &left_pre,  geometry_msgs::msg::Pose &left_grasp,
     geometry_msgs::msg::Pose &right_pre, geometry_msgs::msg::Pose &right_grasp)
 {
-    tf2::Transform T_world_to_cyl;
-    tf2::fromMsg(cyl_pose, T_world_to_cyl);
+    double cx = cyl_pose.position.x;
+    double cy = cyl_pose.position.y;
+    double cz = cyl_pose.position.z;
 
-    // ── Left arm (+Y side) — "inverted" grasp ──────────────────────────────
-    //   Local Y(palm) → world -Y  (toward cylinder from left)
-    //   Local Z(fingers) → world -X (forward)
-    //   Local X(thumb) → world -Z (down)
-    tf2::Matrix3x3 R_left(0,0,-1, 0,-1,0, -1,0,0);
-    tf2::Vector3 t_left_pre  (0.0,  safe_dist,  z_offset);
-    tf2::Vector3 t_left_grasp(0.0,  grasp_dist,  z_offset);
+    // ── Left arm: RViz-verified offsets + quaternion ──────────────────────
+    left_grasp.position.x = cx + 0.064;
+    left_grasp.position.y = cy - 0.115;
+    left_grasp.position.z = cz + 0.098;
+    left_grasp.orientation.x = -0.5243;
+    left_grasp.orientation.y =  0.5462;
+    left_grasp.orientation.z = -0.4406;
+    left_grasp.orientation.w = -0.4823;
 
-    tf2::toMsg(T_world_to_cyl * tf2::Transform(R_left, t_left_pre),  left_pre);
-    tf2::toMsg(T_world_to_cyl * tf2::Transform(R_left, t_left_grasp), left_grasp);
+    left_pre = left_grasp;
+    left_pre.position.y -= 0.10;
 
-    // ── Right arm (-Y side) — "normal" grasp ───────────────────────────────
-    //   Local Y(palm) → world +Y  (toward cylinder from right)
-    //   Local Z(fingers) → world -X (forward)
-    //   Local X(thumb) → world +Z (up)
-    tf2::Matrix3x3 R_right(0,0,-1, 0,1,0, 1,0,0);
-    tf2::Vector3 t_right_pre  (0.0, -safe_dist, -z_offset);
-    tf2::Vector3 t_right_grasp(0.0, -grasp_dist, -z_offset);
+    // ── Right arm: RViz-verified offsets + quaternion ─────────────────────
+    right_grasp.position.x = cx - 0.121;
+    right_grasp.position.y = cy - 0.088;
+    right_grasp.position.z = cz - 0.023;
+    right_grasp.orientation.x =  0.4392;
+    right_grasp.orientation.y =  0.5466;
+    right_grasp.orientation.z = -0.4546;
+    right_grasp.orientation.w =  0.5493;
 
-    tf2::toMsg(T_world_to_cyl * tf2::Transform(R_right, t_right_pre),  right_pre);
-    tf2::toMsg(T_world_to_cyl * tf2::Transform(R_right, t_right_grasp), right_grasp);
+    right_pre = right_grasp;
+    right_pre.position.y -= 0.10;
 }
 
 // ── quaternion from two axes: Y→palm_dir, X→x_pref (projected) ──────────
@@ -216,9 +219,9 @@ int main(int argc, char **argv) {
 
     // ── Z-axis symmetry search for reachable grasp poses ───────────────────
     geometry_msgs::msg::Pose cyl_pose;
-    cyl_pose.position.x = 0.0;
-    cyl_pose.position.y = -0.48;
-    cyl_pose.position.z = 0.7;
+    cyl_pose.position.x = 0.05;
+    cyl_pose.position.y = -0.70;
+    cyl_pose.position.z = 0.8;
 
     bool grasp_success = false;
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
@@ -232,7 +235,7 @@ int main(int argc, char **argv) {
         q.setRPY(0.0, 0.0, yaw_rad);
         cyl_pose.orientation = tf2::toMsg(q);
 
-        calculate_dynamic_grasp_poses(cyl_pose, 0.15, 0.01, 0.125,
+        calculate_dynamic_grasp_poses(cyl_pose, 0.10, 0.02, 0.05,
                                       l_pre, l_grasp, r_pre, r_grasp);
 
         RCLCPP_INFO(log, ">>> Testing yaw: %.1f deg", yaw_deg);
