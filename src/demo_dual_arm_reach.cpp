@@ -20,6 +20,7 @@
 #include <tf2/LinearMath/Matrix3x3.h>
 #include <tf2/LinearMath/Vector3.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <tf2/LinearMath/Quaternion.h>
 
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
@@ -198,73 +199,84 @@ int main(int argc, char **argv) {
     }
     std::this_thread::sleep_for(2s);
 
-    // ── Ensure cylinder collision object is in the planning scene ────────
-    {
-      moveit::planning_interface::PlanningSceneInterface psi;
-      moveit_msgs::msg::CollisionObject cyl_obj;
-      cyl_obj.id = "target_cylinder";
-      cyl_obj.header.frame_id = "base_link";
-      cyl_obj.operation = moveit_msgs::msg::CollisionObject::ADD;
+    // ── MoveGroup initialization ───────────────────────────────────────────
+    MoveGroup left_group(node, "left_arm");
+    MoveGroup right_group(node, "right_arm");
+    right_group.setPoseReferenceFrame("base_link");
+    left_group.setPoseReferenceFrame("base_link");
+    right_group.setEndEffectorLink("right_tcp_link");
+    left_group.setEndEffectorLink("left_tcp_link");
 
-      shape_msgs::msg::SolidPrimitive cyl_prim;
-      cyl_prim.type = shape_msgs::msg::SolidPrimitive::CYLINDER;
-      cyl_prim.dimensions = {0.25, 0.02};
-      cyl_obj.primitives.push_back(cyl_prim);
+    // ── Cylinder collision object DISABLED (let arms approach freely) ──────
+    // Collision object removed so the planner can reach the grasp pose
+    // without being blocked by the cylinder primitive.
+    // In production, attach the object AFTER finger closure via attachObject().
+    RCLCPP_INFO(log, "Collision object disabled — arms ignore cylinder");
+    std::this_thread::sleep_for(1s);
 
-      geometry_msgs::msg::Pose cyl_pose;
-      cyl_pose.position.x = 0.0; cyl_pose.position.y = -0.50; cyl_pose.position.z = 0.95;
-      cyl_pose.orientation.w = 1.0;
-      cyl_obj.primitive_poses.push_back(cyl_pose);
+    // ── Z-axis symmetry search for reachable grasp poses ───────────────────
+    geometry_msgs::msg::Pose cyl_pose;
+    cyl_pose.position.x = 0.0;
+    cyl_pose.position.y = -0.48;
+    cyl_pose.position.z = 0.7;
 
-      psi.applyCollisionObject(cyl_obj);
-      RCLCPP_INFO(log, "Added target_cylinder to planning scene");
-    }
-    std::this_thread::sleep_for(1s);  // let the scene update propagate
-
-    // -- Hardcoded targets at verified reachable positions ------------------
+    bool grasp_success = false;
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
 
-    // Left arm: (0.10, -0.43, 0.95) — slightly left of cylinder, tol 3.14
-    l_pre.position.x = 0.15; l_pre.position.y = -0.30; l_pre.position.z = 1.02;
-    l_pre.orientation.w = 1.0;
-    l_grasp.position.x = 0.03; l_grasp.position.y = -0.40; l_grasp.position.z = 0.95;
-    l_grasp.position.x = 0.05; l_grasp.position.y = -0.30; l_grasp.position.z = 1.02;
+    RCLCPP_INFO(log, "Searching grasp poses via Z-axis symmetry (-45 to +45 deg)...");
 
-    // Right arm: (0.10, -0.43, 0.95) — slightly right, tol 0.5, use quat_from_axes
-    { double rax=-0.10, ray=0.17, raz=0.07;  // approach: right TCP -> cylinder
-      double qx,qy,qz,qw; quat_from_axes(rax,ray,raz, 0,0,1, qx,qy,qz,qw);
-      r_pre.position.x = 0.10; r_pre.position.y = -0.52; r_pre.position.z = 0.88;
-      r_pre.orientation.x=qx; r_pre.orientation.y=qy; r_pre.orientation.z=qz; r_pre.orientation.w=qw; }
-    r_grasp.position.x = 0.03; r_grasp.position.y = -0.52; r_grasp.position.z = 0.88;
-    r_grasp.orientation = r_pre.orientation;
+    for (double yaw_deg = -45.0; yaw_deg <= 45.0; yaw_deg += 5.0) {
+        double yaw_rad = yaw_deg * M_PI / 180.0;
 
-    RCLCPP_INFO(log, "Left  pre:   (%.3f, %.3f, %.3f)",
-        l_pre.position.x, l_pre.position.y, l_pre.position.z);
-    RCLCPP_INFO(log, "Left  grasp: (%.3f, %.3f, %.3f)",
-        l_grasp.position.x, l_grasp.position.y, l_grasp.position.z);
-    RCLCPP_INFO(log, "Right pre:   (%.3f, %.3f, %.3f)",
-        r_pre.position.x, r_pre.position.y, r_pre.position.z);
-    RCLCPP_INFO(log, "Right grasp: (%.3f, %.3f, %.3f)",
-        r_grasp.position.x, r_grasp.position.y, r_grasp.position.z);
+        tf2::Quaternion q;
+        q.setRPY(0.0, 0.0, yaw_rad);
+        cyl_pose.orientation = tf2::toMsg(q);
 
-    // ── Execute two-stage grasps ─────────────────────────────────────────
+        calculate_dynamic_grasp_poses(cyl_pose, 0.15, 0.01, 0.125,
+                                      l_pre, l_grasp, r_pre, r_grasp);
+
+        RCLCPP_INFO(log, ">>> Testing yaw: %.1f deg", yaw_deg);
+
+        // ── Test right arm ──────────────────────────────────────────────────
+        right_group.setPoseTarget(r_pre);
+        right_group.setGoalPositionTolerance(0.01);
+        right_group.setGoalOrientationTolerance(0.3);
+        right_group.setPlanningTime(2.0);
+        right_group.setNumPlanningAttempts(5);
+        moveit::planning_interface::MoveGroupInterface::Plan plan_r;
+        if (right_group.plan(plan_r) != moveit::core::MoveItErrorCode::SUCCESS)
+            continue;
+
+        // ── Test left arm ───────────────────────────────────────────────────
+        left_group.setPoseTarget(l_pre);
+        left_group.setGoalPositionTolerance(0.01);
+        left_group.setGoalOrientationTolerance(0.3);
+        left_group.setPlanningTime(2.0);
+        left_group.setNumPlanningAttempts(5);
+        moveit::planning_interface::MoveGroupInterface::Plan plan_l;
+        if (left_group.plan(plan_l) != moveit::core::MoveItErrorCode::SUCCESS)
+            continue;
+
+        RCLCPP_INFO(log, "FOUND reachable pose at yaw %.1f deg!", yaw_deg);
+        grasp_success = true;
+        break;
+    }
+
+    if (!grasp_success) {
+        RCLCPP_ERROR(log, "All yaw angles failed. Move cylinder closer or further.");
+        rclcpp::shutdown();
+        spin_thread.join();
+        return 1;
+    }
+
+    // ── Execute the winning poses ───────────────────────────────────────────
     RCLCPP_INFO(log, "============================================================");
-    MoveGroup right_arm(node, "right_arm");
-    MoveGroup left_arm(node, "left_arm");
-    right_arm.setPoseReferenceFrame("base_link");
-    left_arm.setPoseReferenceFrame("base_link");
-    right_arm.setEndEffectorLink("right_tcp_link");
-    left_arm.setEndEffectorLink("left_tcp_link");
-
-
-    RCLCPP_INFO(log, "Step 2: RIGHT arm two-stage grasp [FIRST — tight orientation]");
-    RCLCPP_INFO(log, "============================================================");
-    bool right_ok = execute_two_stage_grasp(log, right_arm, r_pre, r_grasp, "right_arm");
+    RCLCPP_INFO(log, "Step 2: LEFT arm two-stage grasp");
+    bool left_ok = execute_two_stage_grasp(log, left_group, l_pre, l_grasp, "left_arm");
 
     RCLCPP_INFO(log, "============================================================");
-    RCLCPP_INFO(log, "Step 3: LEFT arm two-stage grasp [SECOND — loose, navigates around]");
-    RCLCPP_INFO(log, "============================================================");
-    bool left_ok = execute_two_stage_grasp(log, left_arm, l_pre, l_grasp, "left_arm");
+    RCLCPP_INFO(log, "Step 3: RIGHT arm two-stage grasp");
+    bool right_ok = execute_two_stage_grasp(log, right_group, r_pre, r_grasp, "right_arm");
 
     // ── Summary ──────────────────────────────────────────────────────────
     RCLCPP_INFO(log, "============================================================");

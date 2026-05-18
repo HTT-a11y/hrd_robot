@@ -37,8 +37,8 @@ class TargetObjectPublisher(Node):
 
         pose = Pose()
         pose.position.x = 0.0
-        pose.position.y = -0.35
-        pose.position.z = 0.95
+        pose.position.y = -0.48
+        pose.position.z = 0.7
         pose.orientation.w = 1.0
 
         obj.primitives = [cylinder]
