@@ -9,6 +9,8 @@
 
 #include <chrono>
 #include <cmath>
+#include <iomanip>
+#include <iostream>
 #include <memory>
 #include <thread>
 #include <vector>
@@ -35,54 +37,89 @@
 
 using namespace std::chrono_literals;
 
-// ── Template-based relative grasp (RViz templates via tf2) ────────────────
+// ── Axis-based grasp pose solver (X=thumb↑, Y=palm→cyl, Z=fingers) ────────
 
 void calculate_dynamic_grasp_poses(
     const geometry_msgs::msg::Pose &cyl_pose,
+    double left_approach_angle_rad,
+    double right_approach_angle_rad,
+    double grasp_dist,
+    double safe_dist,
     geometry_msgs::msg::Pose &left_pre,  geometry_msgs::msg::Pose &left_grasp,
     geometry_msgs::msg::Pose &right_pre, geometry_msgs::msg::Pose &right_grasp)
 {
-    tf2::Transform T_world_to_cyl;
-    tf2::fromMsg(cyl_pose, T_world_to_cyl);
+    double cx = cyl_pose.position.x;
+    double cy = cyl_pose.position.y;
+    double cz = cyl_pose.position.z;
 
-    // ── Left arm template ──────────────────────────────────────────────────
-    tf2::Transform T_cyl_to_left;
-    T_cyl_to_left.setOrigin(tf2::Vector3(0.0643, -0.1153, 0.0987));
-    T_cyl_to_left.setRotation(tf2::Quaternion(-0.5243, 0.5462, -0.4406, -0.4823));
-    tf2::toMsg(T_world_to_cyl * T_cyl_to_left, left_grasp);
+    // ── Left arm ──────────────────────────────────────────────────────────
+    left_grasp.position.x = cx + grasp_dist * std::cos(left_approach_angle_rad);
+    left_grasp.position.y = cy + grasp_dist * std::sin(left_approach_angle_rad);
+    left_grasp.position.z = cz;
 
-    // ── Right arm template ─────────────────────────────────────────────────
-    tf2::Transform T_cyl_to_right;
-    T_cyl_to_right.setOrigin(tf2::Vector3(-0.1214, -0.0884, -0.0232));
-    T_cyl_to_right.setRotation(tf2::Quaternion(0.4392, 0.5466, -0.4546, 0.5493));
-    tf2::toMsg(T_world_to_cyl * T_cyl_to_right, right_grasp);
+    tf2::Vector3 l_x_axis(0.0, 0.0, 1.0);  // thumb = world Z up
+    tf2::Vector3 l_y_axis(cx - left_grasp.position.x, cy - left_grasp.position.y, 0.0);
+    l_y_axis.normalize();
+    tf2::Vector3 l_z_axis = l_x_axis.cross(l_y_axis);
+    l_z_axis.normalize();
 
-    // ── Pre-grasp: 10 cm above grasp ───────────────────────────────────────
+    tf2::Matrix3x3 R_left(l_x_axis.x(),l_y_axis.x(),l_z_axis.x(),
+                          l_x_axis.y(),l_y_axis.y(),l_z_axis.y(),
+                          l_x_axis.z(),l_y_axis.z(),l_z_axis.z());
+    tf2::Quaternion q_left; R_left.getRotation(q_left);
+    left_grasp.orientation = tf2::toMsg(q_left);
+
     left_pre = left_grasp;
-    left_pre.position.z += 0.10;
+    left_pre.position.z += safe_dist;   // high hover, no XY retreat
+
+    // ── Right arm ─────────────────────────────────────────────────────────
+    right_grasp.position.x = cx + grasp_dist * std::cos(right_approach_angle_rad);
+    right_grasp.position.y = cy + grasp_dist * std::sin(right_approach_angle_rad);
+    right_grasp.position.z = cz;
+
+    tf2::Vector3 r_x_axis(0.0, 0.0, 1.0);
+    tf2::Vector3 r_y_axis(cx - right_grasp.position.x, cy - right_grasp.position.y, 0.0);
+    r_y_axis.normalize();
+    tf2::Vector3 r_z_axis = r_x_axis.cross(r_y_axis);
+    r_z_axis.normalize();
+
+    tf2::Matrix3x3 R_right(r_x_axis.x(),r_y_axis.x(),r_z_axis.x(),
+                           r_x_axis.y(),r_y_axis.y(),r_z_axis.y(),
+                           r_x_axis.z(),r_y_axis.z(),r_z_axis.z());
+    tf2::Quaternion q_right; R_right.getRotation(q_right);
+    right_grasp.orientation = tf2::toMsg(q_right);
+
     right_pre = right_grasp;
-    right_pre.position.z += 0.10;
+    right_pre.position.z += safe_dist;   // high hover, no XY retreat
+
+    // ── Diagnostic ────────────────────────────────────────────────────────
+    std::cout << "\n=========== [Kinematic Diagnostic] ===========" << std::endl;
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "Cylinder: (" << cx << ", " << cy << ", " << cz << ")" << std::endl;
+    std::cout << "Left  GRASP: (" << left_grasp.position.x << ", " << left_grasp.position.y << ", " << left_grasp.position.z << ")" << std::endl;
+    std::cout << "Left  PRE:   (" << left_pre.position.x << ", " << left_pre.position.y << ", " << left_pre.position.z << ")" << std::endl;
+    std::cout << "Right GRASP: (" << right_grasp.position.x << ", " << right_grasp.position.y << ", " << right_grasp.position.z << ")" << std::endl;
+    std::cout << "Right PRE:   (" << right_pre.position.x << ", " << right_pre.position.y << ", " << right_pre.position.z << ")" << std::endl;
+    std::cout << "==============================================\n" << std::endl;
 }
 
-// ── quaternion from two axes: Y→palm_dir, X→x_pref (projected) ──────────
+// ── Adaptive orientation constraint (tight X/Y, loose Z rotation) ─────────
 
-static void quat_from_axes(double palm_x,double palm_y,double palm_z,
-                           double xpx,double xpy,double xpz,
-                           double &qx,double &qy,double &qz,double &qw) {
-  double my=std::sqrt(palm_x*palm_x+palm_y*palm_y+palm_z*palm_z);
-  if(my<1e-9){qx=qy=qz=0;qw=1;return;}
-  double Yx=palm_x/my,Yy=palm_y/my,Yz=palm_z/my;
-  double dot=Yx*xpx+Yy*xpy+Yz*xpz;
-  double Xx=xpx-dot*Yx, Xy=xpy-dot*Yy, Xz=xpz-dot*Yz;
-  double mx=std::sqrt(Xx*Xx+Xy*Xy+Xz*Xz);
-  if(mx<1e-9){qx=qy=qz=0;qw=1;return;}
-  Xx/=mx;Xy/=mx;Xz/=mx;
-  double Zx=Xy*Yz-Xz*Yy, Zy=Xz*Yx-Xx*Yz, Zz=Xx*Yy-Xy*Yx;
-  double tr=Xx+Yy+Zz,s;
-  if(tr>0){s=std::sqrt(tr+1)*2; qx=(Zy-Yz)/s; qy=(Xz-Zx)/s; qz=(Yx-Xy)/s; qw=.25*s;}
-  else if(Xx>Yy&&Xx>Zz){s=std::sqrt(1+Xx-Yy-Zz)*2; qx=.25*s; qy=(Xy+Yx)/s; qz=(Xz+Zx)/s; qw=(Zy-Yz)/s;}
-  else if(Yy>Zz){s=std::sqrt(1+Yy-Xx-Zz)*2; qx=(Xy+Yx)/s; qy=.25*s; qz=(Yz+Zy)/s; qw=(Xz-Zx)/s;}
-  else{s=std::sqrt(1+Zz-Xx-Yy)*2; qx=(Xz+Zx)/s; qy=(Yz+Zy)/s; qz=.25*s; qw=(Yx-Xy)/s;}
+moveit_msgs::msg::Constraints create_adaptive_orientation_constraint(
+    const std::string &link_name,
+    const geometry_msgs::msg::Pose &target_pose)
+{
+    moveit_msgs::msg::Constraints constraints;
+    moveit_msgs::msg::OrientationConstraint o_const;
+    o_const.header.frame_id = "base_link";
+    o_const.link_name = link_name;
+    o_const.orientation = target_pose.orientation;
+    o_const.absolute_x_axis_tolerance = 0.05;   // tight tilt
+    o_const.absolute_y_axis_tolerance = 0.05;   // tight pitch
+    o_const.absolute_z_axis_tolerance = 3.14;   // free rotation around cylinder axis
+    o_const.weight = 1.0;
+    constraints.orientation_constraints.push_back(o_const);
+    return constraints;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -123,28 +160,32 @@ bool execute_two_stage_grasp(
     const std::string &name)
 {
     // ── Stage 1: free-space motion to pre-grasp ──────────────────────────
-    RCLCPP_INFO(log, "[%s] Stage 1 -- planning (position-only, 30s timeout)...",
+    RCLCPP_INFO(log, "[%s] Stage 1 -- planning with adaptive orientation...",
                 name.c_str());
     group.setPoseTarget(pre_pose);
     group.setGoalPositionTolerance(0.01);
-    // Left arm: loose orientation (computed pose hard to reach)
-    // Right arm: tighter (pose works well)
-    double orient_tol = (name == "left_arm") ? 3.14 : 0.5;
-    group.setGoalOrientationTolerance(orient_tol);
+    group.setGoalOrientationTolerance(0.1);
     group.setPlanningTime(30.0);
     group.setNumPlanningAttempts(10);
     group.setMaxVelocityScalingFactor(0.5);
     group.setMaxAccelerationScalingFactor(0.5);
 
+    // Adaptive constraint: tight X/Y tilt, free Z rotation
+    std::string ee_link = (name == "left_arm") ? "left_tcp_link" : "right_tcp_link";
+    group.setPathConstraints(
+        create_adaptive_orientation_constraint(ee_link, pre_pose));
+
     moveit::planning_interface::MoveGroupInterface::Plan pre_plan;
 
     if (group.plan(pre_plan) != moveit::core::MoveItErrorCode::SUCCESS) {
+        group.clearPathConstraints();
         RCLCPP_ERROR(log,
             "[FATAL] [%s] XYZ (%.2f,%.2f,%.2f) UNREACHABLE — outside workspace",
             name.c_str(),
             pre_pose.position.x, pre_pose.position.y, pre_pose.position.z);
         return false;
     }
+    group.clearPathConstraints();
 
     RCLCPP_INFO(log, "OK   [%s] Stage 1 planned, executing...", name.c_str());
     group.execute(pre_plan);
@@ -209,36 +250,38 @@ int main(int argc, char **argv) {
     RCLCPP_INFO(log, "Collision object disabled — arms ignore cylinder");
     std::this_thread::sleep_for(1s);
 
-    // ── Z-axis symmetry search for reachable grasp poses ───────────────────
+    // ── Approach-angle search: +X (0 rad) for left, -X (π rad) for right ──
     geometry_msgs::msg::Pose cyl_pose;
-    cyl_pose.position.x = 0.05;
-    cyl_pose.position.y = -0.70;
-    cyl_pose.position.z = 0.80;
+    cyl_pose.position.x = 0.0;
+    cyl_pose.position.y = -0.45;
+    cyl_pose.position.z = 0.70;
     cyl_pose.orientation.w = 1.0;
+
+    const double GRASP_DIST = 0.10;  // 10 cm — matches RViz safe reachable zone
+    const double SAFE_DIST  = 0.06;   // 6 cm pre-grasp lift
 
     bool grasp_success = false;
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
 
-    std::vector<double> yaw_angles = {
-        0.0, 5.0, -5.0, 10.0, -10.0, 15.0, -15.0, 20.0, -20.0,
-        25.0, -25.0, 30.0, -30.0, 35.0, -35.0, 40.0, -40.0, 45.0, -45.0
-    };
+    std::vector<double> yaw_offsets = {0.0, 5.0, -5.0, 10.0, -10.0, 15.0, -15.0};
 
-    RCLCPP_INFO(log, "Template-based yaw search (0 deg outward)...");
+    RCLCPP_INFO(log, "Approach-angle search (left=0, right=pi base)...");
 
-    for (double yaw_deg : yaw_angles) {
-        double yaw_rad = yaw_deg * M_PI / 180.0;
-        tf2::Quaternion q;
-        q.setRPY(0.0, 0.0, yaw_rad);
-        cyl_pose.orientation = tf2::toMsg(q);
+    for (double offset_deg : yaw_offsets) {
+        double offset_rad = offset_deg * M_PI / 180.0;
+        double left_angle  = 0.0   + offset_rad;   // +X side
+        double right_angle = M_PI  + offset_rad;   // -X side
 
-        calculate_dynamic_grasp_poses(cyl_pose, l_pre, l_grasp, r_pre, r_grasp);
+        calculate_dynamic_grasp_poses(cyl_pose,
+            left_angle, right_angle, GRASP_DIST, SAFE_DIST,
+            l_pre, l_grasp, r_pre, r_grasp);
 
-        RCLCPP_INFO(log, ">>> Testing yaw: %.1f deg", yaw_deg);
+        RCLCPP_INFO(log, ">>> Offset: %+.1f deg  L=%.1f  R=%.1f",
+                     offset_deg, left_angle*180.0/M_PI, right_angle*180.0/M_PI);
 
         moveit::planning_interface::MoveGroupInterface::Plan dummy_plan;
 
-        // ── Layer 1: position-only (any orientation), fast 1.5s ──────────────
+        // ── Layer 1: position-only, fast 1.5s ──────────────────────────────
         right_group.setPoseTarget(r_pre);
         right_group.setGoalPositionTolerance(0.01);
         right_group.setGoalOrientationTolerance(3.14);
@@ -253,22 +296,33 @@ int main(int argc, char **argv) {
         if (left_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
             continue;
 
-        // ── Layer 2: strict RViz orientation, 0.1 rad (~6°) ──────────────────
+        // ── Layer 2: adaptive orientation constraint ───────────────────────
+        right_group.setPathConstraints(
+            create_adaptive_orientation_constraint("right_tcp_link", r_pre));
         right_group.setGoalOrientationTolerance(0.1);
-        if (right_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
+        if (right_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS) {
+            right_group.clearPathConstraints();
             continue;
+        }
+        right_group.clearPathConstraints();
 
+        left_group.setPathConstraints(
+            create_adaptive_orientation_constraint("left_tcp_link", l_pre));
         left_group.setGoalOrientationTolerance(0.1);
-        if (left_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS)
+        if (left_group.plan(dummy_plan) != moveit::core::MoveItErrorCode::SUCCESS) {
+            left_group.clearPathConstraints();
             continue;
+        }
+        left_group.clearPathConstraints();
 
-        RCLCPP_INFO(log, "FOUND reachable pose at yaw %.1f deg!", yaw_deg);
+        RCLCPP_INFO(log, "FOUND reachable pose at offset %.1f deg!",
+                     offset_deg);
         grasp_success = true;
         break;
     }
 
     if (!grasp_success) {
-        RCLCPP_ERROR(log, "All yaw angles failed. Move cylinder closer or further.");
+        RCLCPP_ERROR(log, "All approach angles failed.");
         rclcpp::shutdown();
         spin_thread.join();
         return 1;
