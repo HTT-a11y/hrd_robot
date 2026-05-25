@@ -58,7 +58,7 @@ def generate_launch_description():
 
     # ── URDF with gazebo_ros2_control ───────────────────────────────────────
     moveit_config = (
-        MoveItConfigsBuilder('HRD ', package_name='hrd_moveit_config')
+        MoveItConfigsBuilder('HRD', package_name='hrd_moveit_config')
         .robot_description(
             mappings={
                 'use_fake_hardware': 'false',
@@ -175,7 +175,7 @@ def generate_launch_description():
         arguments=[
             '-entity', 'target_cylinder',
             '-file', sdf_tmp,
-            '-x', '0.0', '-y', '-0.45', '-z', '0.70',
+            '-x', '-0.10', '-y', '-0.45', '-z', '0.80',
             '-timeout', '60.0',
         ],
     )

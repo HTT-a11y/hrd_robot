@@ -13,7 +13,7 @@ from moveit_configs_utils import MoveItConfigsBuilder
 
 
 def generate_launch_description():
-    moveit_config = MoveItConfigsBuilder("HRD ", package_name="hrd_moveit_config").to_moveit_configs()
+    moveit_config = MoveItConfigsBuilder("HRD", package_name="hrd_moveit_config").to_moveit_configs()
 
     demo_node = Node(
         package="hrd_moveit_config",

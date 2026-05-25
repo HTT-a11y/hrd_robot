@@ -3,7 +3,7 @@ moveit_setup_assistant_config:
     package: turn_on_hrd_robot
     relative_path: HRD_description/HRD.urdf.xacro
   srdf:
-    relative_path: config/HRD .srdf
+    relative_path: config/HRD.srdf
   package_settings:
     author_name: HTT
     author_email: 15216968378@163.com
