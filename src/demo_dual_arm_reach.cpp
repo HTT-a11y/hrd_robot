@@ -26,15 +26,15 @@ using MoveGroup = moveit::planning_interface::MoveGroupInterface;
 // ── Axis-based grasp solver ──────────────────────────────────────────────
 
 void calc_grasp(const geometry_msgs::msg::Pose &cyl,
-                double left_ang, double right_ang, double grasp_d, double safe_d,
+                double left_ang, double right_ang, double l_grasp_d, double r_grasp_d, double safe_d,
                 geometry_msgs::msg::Pose &l_pre, geometry_msgs::msg::Pose &l_grasp,
                 geometry_msgs::msg::Pose &r_pre, geometry_msgs::msg::Pose &r_grasp)
 {
     double cx=cyl.position.x, cy=cyl.position.y, cz=cyl.position.z;
 
     // Left arm
-    l_grasp.position.x = cx + grasp_d*cos(left_ang);
-    l_grasp.position.y = cy + grasp_d*sin(left_ang);
+    l_grasp.position.x = cx + l_grasp_d*cos(left_ang);
+    l_grasp.position.y = cy + l_grasp_d*sin(left_ang);
     l_grasp.position.z = cz;
     tf2::Vector3 lx(0,0,1), ly(cx-l_grasp.position.x,cy-l_grasp.position.y,0); ly.normalize();
     tf2::Vector3 lz = lx.cross(ly); lz.normalize();
@@ -44,8 +44,8 @@ void calc_grasp(const geometry_msgs::msg::Pose &cyl,
     l_pre = l_grasp; l_pre.position.z += safe_d;
 
     // Right arm
-    r_grasp.position.x = cx + grasp_d*cos(right_ang);
-    r_grasp.position.y = cy + grasp_d*sin(right_ang);
+    r_grasp.position.x = cx + r_grasp_d*cos(right_ang);
+    r_grasp.position.y = cy + r_grasp_d*sin(right_ang);
     r_grasp.position.z = cz;
     tf2::Vector3 rx(0,0,1), ry(cx-r_grasp.position.x,cy-r_grasp.position.y,0); ry.normalize();
     tf2::Vector3 rz = rx.cross(ry); rz.normalize();
@@ -59,12 +59,15 @@ void calc_grasp(const geometry_msgs::msg::Pose &cyl,
 
 bool plan_exec(rclcpp::Logger log, MoveGroup &mg,
                const geometry_msgs::msg::Pose &pre,
-               const std::string &name)
+               const std::string &name,
+               double orient_tol = 0.5,
+               double pos_tol = 0.05)
 {
     mg.setPoseTarget(pre);
-    mg.setGoalPositionTolerance(0.05);
-    mg.setGoalOrientationTolerance(3.14);  // position-only — proven to work
+    mg.setGoalPositionTolerance(pos_tol);
+    mg.setGoalOrientationTolerance(orient_tol);
     mg.setPlanningTime(15.0);
+    mg.setNumPlanningAttempts(1);
     mg.setMaxVelocityScalingFactor(0.5);
     mg.setMaxAccelerationScalingFactor(0.5);
     MoveGroup::Plan p;
@@ -103,16 +106,17 @@ int main(int argc, char **argv) {
     }
     std::this_thread::sleep_for(2s);
 
-    // ── Cylinder at verified sweet spot ────────────────────────────────
+    // ── Cylinder based on LEFT TCP scan + RIGHT known reachable ─────────
+    // Left  TCP OK zone: X=[-0.15,0.05], Y=[-0.45,-0.55], Z=0.85
+    // Right TCP OK zone: X=[-0.25,-0.20], Y≈-0.45, Z≈0.83 (from prior runs)
     geometry_msgs::msg::Pose cyl;
-    cyl.position.x = -0.10;
+    cyl.position.x = -0.11;
     cyl.position.y = -0.45;
-    cyl.position.z =  0.80;
+    cyl.position.z =  0.85;
     cyl.orientation.w = 1.0;
 
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
-    // Left from +X (0°), Right from -X (180°), 10cm grasp, 6cm lift
-    calc_grasp(cyl, 0.0, M_PI, 0.10, 0.03, l_pre, l_grasp, r_pre, r_grasp);
+    calc_grasp(cyl, 0.0, M_PI, 0.06, 0.10, 0.0, l_pre, l_grasp, r_pre, r_grasp);
 
     std::cout << std::fixed << std::setprecision(3);
     std::cout << "\nCylinder: (" << cyl.position.x << "," << cyl.position.y << "," << cyl.position.z << ")\n";
@@ -126,11 +130,25 @@ int main(int argc, char **argv) {
     lg.setPoseReferenceFrame("base_link");
     rg.setPoseReferenceFrame("base_link");
 
-    RCLCPP_INFO(log, "=== LEFT ARM ===");
-    bool lok = plan_exec(log, lg, l_pre, "left_arm");
+    // Left: TCP at (-0.04,-0.50,0.88) — inside validated scan zone
+    // Right: TCP at (-0.20,-0.50,0.88) — inside validated reachable zone
+    // Left: scan showed OK only with position-only (3.14)
+    // Move left arm to a "neutral seed" before planning (avoid HOME singularity)
+    RCLCPP_INFO(log, "--- Moving left arm to neutral seed ---");
+    lg.setMaxVelocityScalingFactor(0.5);
+    lg.setMaxAccelerationScalingFactor(0.5);
+    lg.setJointValueTarget({0.0, -0.5, 0.0, -1.0, 0.0, 0.5, 0.0});
+    {
+        MoveGroup::Plan seed_p;
+        lg.plan(seed_p); lg.execute(seed_p);
+    }
+    std::this_thread::sleep_for(1s);
 
-    RCLCPP_INFO(log, "=== RIGHT ARM ===");
-    bool rok = plan_exec(log, rg, r_pre, "right_arm");
+    RCLCPP_INFO(log, "=== LEFT ARM (TCP, orient=3.14) ===");
+    bool lok = plan_exec(log, lg, l_pre, "left_arm", 3.14, 0.05);
+
+    RCLCPP_INFO(log, "=== RIGHT ARM (TCP, orient=0.3) ===");
+    bool rok = plan_exec(log, rg, r_pre, "right_arm", 0.3, 0.05);
 
     RCLCPP_INFO(log, "Left:%s Right:%s", lok?"OK":"FAIL", rok?"OK":"FAIL");
 

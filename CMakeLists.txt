@@ -25,6 +25,13 @@ ament_target_dependencies(demo_dual_arm_reach_cpp
   moveit_ros_planning_interface)
 install(TARGETS demo_dual_arm_reach_cpp DESTINATION lib/${PROJECT_NAME})
 
+# ── Left-arm TCP workspace scanner ───────────────────────────────────────────
+add_executable(scan_left_tcp src/scan_left_tcp.cpp)
+ament_target_dependencies(scan_left_tcp
+  rclcpp
+  moveit_ros_planning_interface)
+install(TARGETS scan_left_tcp DESTINATION lib/${PROJECT_NAME})
+
 # ── Python scripts ─────────────────────────────────────────────────────────
 install(PROGRAMS
   scripts/demo_dual_arm_planning.py
