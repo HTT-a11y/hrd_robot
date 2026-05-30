@@ -32,23 +32,36 @@ void calc_grasp(const geometry_msgs::msg::Pose &cyl,
 {
     double cx=cyl.position.x, cy=cyl.position.y, cz=cyl.position.z;
 
-    // Left arm
+    // --- Left arm ---
+    // 设左臂在Z轴抬高0.13m进行错层抓取，避免双臂碰撞
     l_grasp.position.x = cx + l_grasp_d*cos(left_ang);
     l_grasp.position.y = cy + l_grasp_d*sin(left_ang);
-    l_grasp.position.z = cz;
-    tf2::Vector3 lx(0,0,1), ly(cx-l_grasp.position.x,cy-l_grasp.position.y,0); ly.normalize();
-    tf2::Vector3 lz = lx.cross(ly); lz.normalize();
+    l_grasp.position.z = cz + 0.13;
+    
+    // 核心修正：手心(Y)完全精确指向圆柱中心，且包含了Z轴的高低差倾斜角
+    tf2::Vector3 ly(cx - l_grasp.position.x, cy - l_grasp.position.y, cz - l_grasp.position.z);
+    ly.normalize();
+    
+    // 基准约束：大拇指优先朝上，寻找自然且放松的正交腕部姿态
+    tf2::Vector3 up(0, 0, 1);
+    tf2::Vector3 lz = up.cross(ly); lz.normalize(); // 手指(Z)在水平面上切向环手
+    tf2::Vector3 lx = ly.cross(lz); lx.normalize(); // 重新反算得到绝对三维正交的大拇指(X)
+    
     tf2::Matrix3x3 Rl(lx.x(),ly.x(),lz.x(), lx.y(),ly.y(),lz.y(), lx.z(),ly.z(),lz.z());
     tf2::Quaternion ql; Rl.getRotation(ql);
     l_grasp.orientation = tf2::toMsg(ql);
     l_pre = l_grasp; l_pre.position.z += safe_d;
 
-    // Right arm
+    // --- Right arm ---
     r_grasp.position.x = cx + r_grasp_d*cos(right_ang);
     r_grasp.position.y = cy + r_grasp_d*sin(right_ang);
     r_grasp.position.z = cz;
-    tf2::Vector3 rx(0,0,1), ry(cx-r_grasp.position.x,cy-r_grasp.position.y,0); ry.normalize();
-    tf2::Vector3 rz = rx.cross(ry); rz.normalize();
+    
+    tf2::Vector3 ry(cx - r_grasp.position.x, cy - r_grasp.position.y, cz - r_grasp.position.z); 
+    ry.normalize();
+    tf2::Vector3 rz = up.cross(ry); rz.normalize();
+    tf2::Vector3 rx = ry.cross(rz); rx.normalize();
+    
     tf2::Matrix3x3 Rr(rx.x(),ry.x(),rz.x(), rx.y(),ry.y(),rz.y(), rx.z(),ry.z(),rz.z());
     tf2::Quaternion qr; Rr.getRotation(qr);
     r_grasp.orientation = tf2::toMsg(qr);
@@ -116,7 +129,8 @@ int main(int argc, char **argv) {
     cyl.orientation.w = 1.0;
 
     geometry_msgs::msg::Pose l_pre, l_grasp, r_pre, r_grasp;
-    calc_grasp(cyl, 0.0, M_PI, 0.06, 0.10, 0.0, l_pre, l_grasp, r_pre, r_grasp);
+    // 左臂的抓取入射角 -M_PI/2.0
+    calc_grasp(cyl, -M_PI/2.0, M_PI, 0.10, 0.10, 0.0, l_pre, l_grasp, r_pre, r_grasp);
 
     std::cout << std::fixed << std::setprecision(3);
     std::cout << "\nCylinder: (" << cyl.position.x << "," << cyl.position.y << "," << cyl.position.z << ")\n";
@@ -144,11 +158,13 @@ int main(int argc, char **argv) {
     }
     std::this_thread::sleep_for(1s);
 
-    RCLCPP_INFO(log, "=== LEFT ARM (TCP, orient=3.14) ===");
-    bool lok = plan_exec(log, lg, l_pre, "left_arm", 3.14, 0.05);
+    RCLCPP_INFO(log, "=== LEFT ARM (TCP) ===");
+    // 修改最后一个参数 0.05 为你想要的位置容差，例如 0.08
+    bool lok = plan_exec(log, lg, l_pre, "left_arm", 0.2, 0.02);
 
-    RCLCPP_INFO(log, "=== RIGHT ARM (TCP, orient=0.3) ===");
-    bool rok = plan_exec(log, rg, r_pre, "right_arm", 0.3, 0.05);
+    RCLCPP_INFO(log, "=== RIGHT ARM (TCP) ===");
+    // 同样修改右臂的位置容差参数
+    bool rok = plan_exec(log, rg, r_pre, "right_arm", 0.2, 0.02);
 
     RCLCPP_INFO(log, "Left:%s Right:%s", lok?"OK":"FAIL", rok?"OK":"FAIL");
 
