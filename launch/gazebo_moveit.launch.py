@@ -175,7 +175,7 @@ def generate_launch_description():
         arguments=[
             '-entity', 'target_cylinder',
             '-file', sdf_tmp,
-            # 将绝对高度变更为 1.20 (0.85 + 0.35的机器人垫高偏移)
+            # 将绝对高度变更为 1.17 (0.82 + 0.35的机器人垫高偏移)
             '-x', '-0.11', '-y', '-0.45', '-z', '0.90',
             '-timeout', '60.0',
         ],
